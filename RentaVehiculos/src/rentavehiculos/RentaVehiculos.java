@@ -16,7 +16,7 @@ import rentavehiculos.creators.LoginCreator;
 
 /**
  *
- * @author Mercedes
+ * @author Oswaldo
  */
 public class RentaVehiculos extends Application {
     

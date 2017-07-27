@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public class WarningAlert extends GeneralAlert {
 

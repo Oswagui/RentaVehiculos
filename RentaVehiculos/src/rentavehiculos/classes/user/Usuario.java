@@ -13,7 +13,7 @@ import rentavehiculos.classes.connection.Conexion;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public class Usuario {
     

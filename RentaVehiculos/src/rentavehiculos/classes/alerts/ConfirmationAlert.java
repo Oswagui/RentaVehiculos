@@ -11,7 +11,7 @@ import javafx.scene.control.ButtonType;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public class ConfirmationAlert extends GeneralAlert {
     

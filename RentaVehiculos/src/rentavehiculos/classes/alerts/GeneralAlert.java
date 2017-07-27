@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public abstract class GeneralAlert {
     

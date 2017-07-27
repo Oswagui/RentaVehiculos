@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public class Validaciones {
     

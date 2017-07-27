@@ -7,7 +7,7 @@ package rentavehiculos.classes.constants;
 
 /**
  *
- * @author Jose Masson
+ * @author Oswaldo
  */
 public class Constantes {
     
