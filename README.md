@@ -19,6 +19,7 @@ INTENGRANTES:
  + Script de creacion de la base de datos.
  + Script de insersion de algunos empleados para realizar la prueba del login.
  + Modelo de la base de datos
+ + Stored Procedures del login.
  + Login Funcional, diferencia cada tipo de usuario.
  + Creacion de algunas clases y paquetes utiles.
  
