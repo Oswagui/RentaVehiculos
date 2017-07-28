@@ -2,7 +2,9 @@
 Proyecto de Bases de Datos.
 
 Tema: Sistema Asistente de Rentas de vehiculos.
+
 GRUPO : Los Sobrevivientes
+
 INTENGRANTES:
   + Aguilar Oswaldo
   + Aragon Harold
