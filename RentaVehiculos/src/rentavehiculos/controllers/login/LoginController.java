@@ -66,6 +66,7 @@ public class LoginController implements Initializable {
         ArrayList<String> validador;
         
         String u = this.user.getText().trim();
+        u=u.substring(1);
         String p = this.password.getText().trim();
         
         this.esValido = this.validarIngreso(u, p);

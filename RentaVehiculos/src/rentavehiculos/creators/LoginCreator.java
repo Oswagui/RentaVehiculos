@@ -27,7 +27,7 @@ public final class LoginCreator {
         
         stage = new Stage();
         
-        File archivo = new File("src/rentavehiculos/screens/login/Login.fxml");
+        File archivo = new File("src/rentavehiculos/screens/servicio/ConsultarCliente.fxml");
         
         URL url;
         
