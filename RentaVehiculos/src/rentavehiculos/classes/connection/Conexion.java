@@ -13,20 +13,21 @@ import com.mysql.jdbc.Statement;
 public class Conexion {
 
     private String _usuario = "root";
-    private String _pwd = "";
+    private String _pwd = "harold";
+    private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
     private static final String DATABASE = "AlquilerDeVehiculos";
     static String _url = "jdbc:mysql://localhost:3306/" + DATABASE;
     private Connection conn = null;
 
     public Conexion() {
-
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(CONTROLADOR);
             conn = (Connection)DriverManager.getConnection(_url, _usuario, _pwd);
             if(conn != null) {
                 System.out.println("Conexion a base de datos "+_url+" Exitosa");
             }
         } catch(SQLException | ClassNotFoundException ex) {
+            System.out.println("Error en la conexión");
 //           AlertsSystem.showWarning(1);
         }
         //System.out.println(ex);
@@ -61,6 +62,13 @@ public class Conexion {
 
     public java.sql.Connection getConnection() {
         return this.conn;
+    }
+    
+    public void desconexion(){
+        this.conn=null;
+        if (conn==null){
+            System.out.println("Se ha desconectado de la base de datos...");
+        }
     }
 
 }

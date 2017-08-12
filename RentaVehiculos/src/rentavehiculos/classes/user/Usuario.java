@@ -99,14 +99,13 @@ public class Usuario {
             String clave) {
         Conexion cn = new Conexion();
         
-        
         ArrayList<String> validadorUsuario = new ArrayList<>();
         
-        int res, idU;
+        int existeU, idU;
         
         String rol = "";
         
-        res = idU = -1;
+        existeU = idU = -1;
         
         try{
             // Llamada al procedimiento almacenado
@@ -121,31 +120,23 @@ public class Usuario {
 
             // Definimos los tipos de los parametros de salida del procedimiento almacenado
             cst.registerOutParameter(3, java.sql.Types.INTEGER);
-            
-            cst.registerOutParameter(4, java.sql.Types.INTEGER);
-            
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.registerOutParameter(5, java.sql.Types.INTEGER);
-
             // Ejecuta el procedimiento almacenado
             cst.execute();
-
             // Se obtienen la salida del procedimineto almacenado
-            res = cst.getInt(3);
+            existeU = cst.getInt(3);
             rol = cst.getString(4);
             idU = cst.getInt(5);
         } 
         catch (SQLException ex) {
-            System.out.println("Error SQL");
+            System.out.println(ex.getMessage());
         } 
         finally {
-            try {
-                cn.getConnection().close();
-            } catch (SQLException ex) {
-                System.out.println("Error en cierre de conexion");
-            }
+            cn.desconexion();
         }
         
-        validadorUsuario.add(Integer.toString(res));
+        validadorUsuario.add(Integer.toString(existeU));
         validadorUsuario.add(rol);
         validadorUsuario.add(Integer.toString(idU));
         
