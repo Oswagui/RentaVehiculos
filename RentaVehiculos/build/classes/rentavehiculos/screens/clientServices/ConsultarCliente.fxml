@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -13,7 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.clientServices.ConsultarClienteController">
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.clientServices.ConsultarClientesController">
    <top>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -39,6 +45,7 @@
                   <RowConstraints maxHeight="98.0" minHeight="0.0" prefHeight="80.0" />
                   <RowConstraints maxHeight="102.0" minHeight="0.0" prefHeight="91.0" />
                   <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="269.0" minHeight="9.0" prefHeight="82.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
@@ -46,7 +53,7 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="cedula" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="identificacion" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
                   <Label text="# de Rentas" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -59,7 +66,7 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <ComboBox fx:id="tipoCliente" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="tipo" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Nombre" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -74,17 +81,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="inferior" />
-                        <TextField fx:id="superior" GridPane.columnIndex="2" />
+                        <TextField fx:id="rDesde" />
+                        <TextField fx:id="rHasta" GridPane.columnIndex="2" />
                         <Label text="hasta" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <Label text="Dinero Gastado" GridPane.rowIndex="5">
+                  <Label text="Dinero Gastado" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="106.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="10.0" prefWidth="36.0" />
@@ -94,12 +101,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="gastoInf" />
-                        <TextField fx:id="gastoSup" GridPane.columnIndex="2" />
+                        <TextField fx:id="dgDesde" />
+                        <TextField fx:id="dgHasta" GridPane.columnIndex="2" />
                         <Label text="hasta" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <TextField fx:id="nombreCliente" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="nombre" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -110,11 +117,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <CheckBox fx:id="activa" mnemonicParsing="false" text="Activa" />
-                        <CheckBox fx:id="devuelta" mnemonicParsing="false" text="Devuelta" GridPane.columnIndex="1" />
-                        <CheckBox fx:id="atraso" mnemonicParsing="false" text="Atraso" GridPane.columnIndex="2" />
+                        <CheckBox fx:id="activaCB" mnemonicParsing="false" text="Activa" />
+                        <CheckBox fx:id="DevueltaCB" mnemonicParsing="false" text="Devuelta" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="AtrasoCB" mnemonicParsing="false" text="Atraso" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
+                  <Label text="Razón Social" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="rSocial" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>
@@ -125,15 +138,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <Button fx:id="AtrasButton" alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" onMouseClicked="#volver" prefHeight="25.0" prefWidth="67.0" text="Atrás">
+                  <Button alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" onMouseClicked="#atras" prefHeight="25.0" prefWidth="67.0" text="Atrás">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="buscarButton" alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="25.0" prefWidth="141.0" text="BUSCAR">
+                  <Button alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="25.0" prefWidth="141.0" text="BUSCAR">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
-                  <Button fx:id="cleanButton" alignment="BASELINE_CENTER" mnemonicParsing="false" onMouseClicked="#limpiar" prefHeight="25.0" prefWidth="70.0" text="Limpiar">
+                  <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onMouseClicked="#limpiar" prefHeight="25.0" prefWidth="70.0" text="Limpiar">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>

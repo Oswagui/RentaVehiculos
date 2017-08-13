@@ -15,10 +15,11 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Mercedes
+ * @author Oswaldo
  */
-public class ConsultarClienteCreator {
-    public static Stage consultarCliente() throws IOException{
+public final class ConsultarClienteCreator {
+    
+    public static Stage consultarClienteCreator() throws IOException{
         
         Stage stage;
         
@@ -42,4 +43,5 @@ public class ConsultarClienteCreator {
 
 
     }
+    
 }

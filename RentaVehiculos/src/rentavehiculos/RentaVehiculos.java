@@ -24,9 +24,9 @@ public class RentaVehiculos extends Application {
     public void start(Stage stage) throws Exception {
         
         stage = LoginCreator.loginCreator();
-        stage.setTitle("RentaVehiculo 2.0"); 
-        stage.show();
-        
+        stage.setTitle("RentaVehiculo 2.0");
+        stage.show();       
+            
     }
     
 
