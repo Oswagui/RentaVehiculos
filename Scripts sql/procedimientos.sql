@@ -24,17 +24,42 @@ BEGIN
     FROM cliente c
     WHERE (c.ruc_ci=tipoI OR tipoI IS NULL) AND (c.identificacion=identificacionI OR identificacionI IS NULL) AND 
     (c.nombre=nombreI OR nombreI IS NULL) AND (c.razon_social=rSocialI OR rSocialI IS NULL)
-    UNION
+    AND EXISTS(
     SELECT c.id_cliente, c.identificacion, c.ruc_ci, c.nombre, c.telefono, c.direccion, c.razon_social 
-    FROM cliente c JOIN alquilervehiculo a ON c.id_cliente=a.cliente
+    FROM cliente c LEFT JOIN alquilervehiculo a ON c.id_cliente=a.cliente
     GROUP BY c.id_cliente
     HAVING ((COUNT(a.idAlquilerVehiculo)>=rDesdeI OR rDesdeI IS NULL) AND (COUNT(a.idAlquilerVehiculo)<=rHastaI OR rHastaI IS NULL))
-    UNION
+    )
+    AND EXISTS(
 	SELECT c.id_cliente, c.identificacion, c.ruc_ci, c.nombre, c.telefono, c.direccion, c.razon_social 
-    FROM cliente c JOIN alquilervehiculo a ON c.id_cliente=a.cliente 
-    JOIN tipopago t ON a.idAlquilerVehiculo=t.idAlquilerVehiculo
+    FROM cliente c LEFT JOIN alquilervehiculo a ON c.id_cliente=a.cliente 
+    LEFT JOIN tipopago t ON a.idAlquilerVehiculo=t.idAlquilerVehiculo
     GROUP BY c.id_cliente
-    HAVING((SUM(t.valor_pago)>=dgDesdeI OR dgDesdeI IS NULL) AND (SUM(t.valor_pago)<=dgHastaI OR dgHastaI IS NULL));
+    HAVING((SUM(t.valor_pago)>=dgDesdeI OR dgDesdeI IS NULL OR SUM(t.valor_pago) IS NULL) AND (SUM(t.valor_pago)<=dgHastaI OR 
+    dgHastaI IS NULL OR SUM(t.valor_pago) IS NULL))
+    );
 end|
 
 delimiter ;
+
+
+select * from vehiculo; 
+
+drop procedure if exists consultarVehiculo;
+
+delimiter |
+CREATE PROCEDURE consultarVehiculo (IN matriculaI VARCHAR(50), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50), IN nombre_modeloI VARCHAR(50), 
+IN colorI VARCHAR(50), IN aDesdeI INT, IN aHastaI INT, IN cDesdeI INT, IN cHastaI INT, IN pDesdeI INT, IN pHastaI INT)
+BEGIN
+	SELECT v.matricula, v.proveedor, v.tipo, v.marca, v.año, v.nombre_modelo, v.disponibilidad, v.color, v.capacidad, v.precio, v.foto
+    FROM cliente c
+    WHERE (v.matricula=matriculaI OR matriculaI IS NULL) AND (v.tipo=tipoI OR tipoI IS NULL) AND (v.marca=marcaI OR marcaI IS NULL) AND 
+    (v.nombre_modelo=nombre_modeloI OR nombre_modeloI IS NULL) AND (v.color=colorI OR colorI IS NULL) AND (v.año>=aDesdeI OR aDesdeI IS NULL)
+    AND (v.año<=aHastaI OR aHastaI IS NULL) AND (v.capacidad>=cDesdeI OR cDesdeI IS NULL) AND (v.capacidad<=cHastaI OR cHastaI IS NULL)
+    AND (v.precio>=pDesdeI OR pDesdeI IS NULL) AND (v.precio<=pHastaI OR pHastaI IS NULL);
+    
+end|
+
+delimiter ;
+
+
