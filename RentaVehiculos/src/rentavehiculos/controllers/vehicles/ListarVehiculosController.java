@@ -60,7 +60,6 @@ public class ListarVehiculosController implements Initializable{
     @FXML
     void verVehiculo(MouseEvent event) throws IOException {
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
-        System.out.println(vehicleToShow.getColor());
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
         Stage stage = (Stage) vehiculos.getScene().getWindow();
         //stage.close(); //Quitar Comentario para cerrar la ventana actual
