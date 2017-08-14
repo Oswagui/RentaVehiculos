@@ -76,6 +76,8 @@ public class Vehiculo implements Serializable {
     @JoinColumn(name = "proveedor", referencedColumnName = "id_proveedor")
     @ManyToOne
     private Proveedor proveedor;
+    
+    private String estado;
 
     public Vehiculo() {
     }
@@ -198,6 +200,20 @@ public class Vehiculo implements Serializable {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public String getPrecioS(){
+        return "$"+getPrecio();
+    }
+    
+    
 
     @Override
     public int hashCode() {

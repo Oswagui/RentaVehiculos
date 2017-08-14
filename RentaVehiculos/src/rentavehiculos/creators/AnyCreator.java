@@ -17,9 +17,9 @@ import javafx.stage.Stage;
  *
  * @author Uchiha ClanPc
  */
-public class ListarClientesCreator { 
+public class AnyCreator {
     
-    public static Stage listarClientesCreator() throws IOException{
+    public static Stage anyCreator(String xmlSource) throws IOException{
         
         Stage stage;
         
@@ -27,7 +27,7 @@ public class ListarClientesCreator {
         
         stage = new Stage();
         
-        File archivo = new File("src/rentavehiculos/screens/clientServices/ListarClientes.fxml");
+        File archivo = new File(xmlSource);
         
         URL url;
         
@@ -40,6 +40,7 @@ public class ListarClientesCreator {
         stage.setScene(scene);
         
         return stage;
+
 
     }
     

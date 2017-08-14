@@ -9,11 +9,14 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import rentavehiculos.creators.AnyCreator;
 import rentavehiculos.creators.ConsultarClienteCreator;
 import rentavehiculos.creators.InfoClienteCreator;
 import rentavehiculos.creators.ListarClientesCreator;
 import rentavehiculos.creators.LoginCreator;
 import rentavehiculos.entities.Cliente;
+import rentavehiculos.entities.Proveedor;
+import rentavehiculos.entities.Vehiculo;
 
 /**
  *
@@ -22,8 +25,10 @@ import rentavehiculos.entities.Cliente;
 public class Pruebas extends Application {
     
     private static ObservableList<Cliente> listaClientes;
+    private static ObservableList<Vehiculo> listaVehiculos;
     private static Pruebas instancia;
     private static Cliente clienteAMostrar;
+    private static Vehiculo vehiculoAMostrar;
     
     public Pruebas(){
         instancia=this;
@@ -32,7 +37,8 @@ public class Pruebas extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        stage = ConsultarClienteCreator.consultarClienteCreator();
+        //stage = ConsultarClienteCreator.consultarClienteCreator();
+        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
         stage.setTitle("RentaVehiculo 2.0"); 
         stage.show();
         
@@ -44,6 +50,7 @@ public class Pruebas extends Application {
         launch(args);
     }
     
+    //metodo para probar el funcionamiento de conservar datos
     public void mostrarNuevaVentana() throws IOException{
         Stage s=ListarClientesCreator.listarClientesCreator();
         s.setTitle("RentaVehiculo 2.0"); 
@@ -51,6 +58,7 @@ public class Pruebas extends Application {
         
     }
     
+     //metodo para probar el funcionamiento
     public void mostrarNuevaVentana2() throws IOException{
         Stage s=InfoClienteCreator.infoClienteCreator();
         s.setTitle("RentaVehiculo 2.0"); 
@@ -76,4 +84,28 @@ public class Pruebas extends Application {
     public void setClienteAMostrar(Cliente c) {
         clienteAMostrar = c;
     }
+    
+    public void mostrarAnyVentana(String xmlSource) throws IOException{
+        Stage s=AnyCreator.anyCreator(xmlSource);
+        s.setTitle("RentaVehiculo 2.0"); 
+        s.show();
+        
+    }
+    
+    public void setListaVehiculos(ObservableList<Vehiculo> lv){       
+        listaVehiculos=lv;
+    }
+    
+    public ObservableList<Vehiculo> getListaVehiculos(){
+        return listaVehiculos;
+    }
+
+    public Vehiculo getVehiculoAMostrar() {
+        return vehiculoAMostrar;
+    }
+
+    public void setVehiculoAMostrar(Vehiculo v) {
+        vehiculoAMostrar = v;
+    }
+   
 }

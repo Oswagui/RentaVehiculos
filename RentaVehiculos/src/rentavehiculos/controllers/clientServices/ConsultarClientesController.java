@@ -38,6 +38,8 @@ public class ConsultarClientesController implements Initializable{
     
     private Stage app;
     
+    ObservableList<Cliente> listaClientes;
+    
     @FXML
     private TextField identificacion;
     
@@ -64,9 +66,7 @@ public class ConsultarClientesController implements Initializable{
     
     public void setApp(Stage app) {
         this.app = app;
-    }
-           
-    ObservableList<Cliente> listaClientes;
+    }  
        
     @FXML
     private void buscar(MouseEvent Event) throws IOException, SQLException{
@@ -156,7 +156,7 @@ public class ConsultarClientesController implements Initializable{
                     }else{
                         clienteTemp.setTipo("");
                     }
-                    
+                    clienteTemp.setRucCi(clientes.getBoolean("ruc_ci"));
                     clienteTemp.setIdentificacion(clientes.getString("identificacion"));
                     clienteTemp.setNombre(clientes.getString("nombre"));
                     clienteTemp.setTelefono(clientes.getString("telefono"));
@@ -170,7 +170,7 @@ public class ConsultarClientesController implements Initializable{
             }                    
             Pruebas.getInstancia().setListaClientes(listaClientes);
             Stage stage = (Stage) identificacion.getScene().getWindow();
-            stage.close();
+            //stage.close(); //Quitar Comentario para cerrar la ventana actual
             Pruebas.getInstancia().mostrarNuevaVentana();
             
         } 
@@ -202,7 +202,7 @@ public class ConsultarClientesController implements Initializable{
     
     @FXML
     private void limpiar(MouseEvent Event){
-        identificacion.getText();
+        identificacion.setText("");
         tipo.getSelectionModel().select("");
         nombre.setText("");
         rSocial.setText("");

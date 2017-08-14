@@ -59,7 +59,7 @@ public class ListarClientesController implements Initializable{
     @FXML
     private void cargarLista(MouseEvent Event){
         clientesOL=Pruebas.getInstancia().getListaClientes();
-        clientes.setItems(clientesOL);
+        clientes.setItems(clientesOL);     
     }
     
     @FXML
@@ -67,7 +67,7 @@ public class ListarClientesController implements Initializable{
         Cliente clientToShow=clientes.getSelectionModel().getSelectedItem();
         Pruebas.getInstancia().setClienteAMostrar(clientToShow);
         Stage stage = (Stage) clientes.getScene().getWindow();
-        stage.close();
+        //stage.close(); //Quitar Comentario para cerrar la ventana actual
         Pruebas.getInstancia().mostrarNuevaVentana2();
     }
     
