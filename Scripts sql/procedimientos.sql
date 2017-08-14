@@ -49,10 +49,10 @@ drop procedure if exists consultarVehiculo;
 
 delimiter |
 CREATE PROCEDURE consultarVehiculo (IN matriculaI VARCHAR(50), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50), IN nombre_modeloI VARCHAR(50), 
-IN colorI VARCHAR(50), IN aDesdeI INT, IN aHastaI INT, IN cDesdeI INT, IN cHastaI INT, IN pDesdeI INT, IN pHastaI INT)
+IN colorI VARCHAR(50), IN aDesdeI INT, IN aHastaI INT, IN cDesdeI INT, IN cHastaI INT, IN pDesdeI FLOAT, IN pHastaI FLOAT)
 BEGIN
 	SELECT v.matricula, v.proveedor, v.tipo, v.marca, v.año, v.nombre_modelo, v.disponibilidad, v.color, v.capacidad, v.precio, v.foto
-    FROM cliente c
+    FROM Vehiculo v
     WHERE (v.matricula=matriculaI OR matriculaI IS NULL) AND (v.tipo=tipoI OR tipoI IS NULL) AND (v.marca=marcaI OR marcaI IS NULL) AND 
     (v.nombre_modelo=nombre_modeloI OR nombre_modeloI IS NULL) AND (v.color=colorI OR colorI IS NULL) AND (v.año>=aDesdeI OR aDesdeI IS NULL)
     AND (v.año<=aHastaI OR aHastaI IS NULL) AND (v.capacidad>=cDesdeI OR cDesdeI IS NULL) AND (v.capacidad<=cHastaI OR cHastaI IS NULL)
@@ -63,3 +63,17 @@ end|
 delimiter ;
 
 
+drop procedure if exists getNombreProveedor;
+
+
+delimiter |
+
+CREATE PROCEDURE getNombreProveedor (IN idProveedorI INT,OUT nombreProveedorO VARCHAR(80))
+BEGIN
+	SELECT nombre INTO nombreProveedorO
+    FROM proveedor
+	WHERE id_proveedor=idProveedorI;
+
+end |
+
+delimiter ;
