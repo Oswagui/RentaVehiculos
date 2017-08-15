@@ -1,16 +1,19 @@
-Insert into cliente values
-(3000000003,1,'0924538129001','Corporacion Favorita','02-299-6695','Av. 6 de Diciembre y Julio Moreno - Sangolquí - Quito','Corporacion Favorita'),
-(3000000004,0,'0984756328','Ana Elena Salazar Meza','095258790','Lizardo Garcia y Venezuela - Sur - Guayaquil,'Ana Salazar'), 
-(3000000005,1,'1890001571001','General Motors Del Ecuador','02-97-7700 ','v. Galo Plaza Lasso Oe1-34 y Enríque Guerrero Portilla - Parque Industrial - Quito', 'General Motors Del Ecuador S.A'),
-(3000000006,1,'1608900100001','Cerveceria Nacional','04-259-8888', 'Vía Daule Km 16 1/2 - Complejo Industrial Pascuales - Guayaquil', 'Cerveceria Nacional CN S.A'),
-(3000000007,0,'0875359218','Juan Jose Eloy Ichazo','0998720036','29 y la Q - Sur - Guayaquil','Juan Eloy'),
-(3000000008,0,'1685489300',' Ramon Alejandro Chonillo Serrano','04-268-2458','Av. Carlos Luis Plaza Dañín y Francisco Boloña - Norte - Guayaquil',' 'Ramon Chonillo'),
-(3000000009,0,'0952155553', 'Elena Rosado Yagual Ramires','04-322-1100,'Víctor Emilio Estrada 711 D y Ficus - Norrte - Guayaquil,'Elena Yagual'),
-(3000000010,1,'0859621591001','Nestle Planta Guayaquil','02-223-2400','Vía a la Costa Km. 6.5, Av. del Bombero,Norte - Guayaquil','Nestle Ecuador S.A'),
-(3000000011,1,'0999542615001','Banco Guayaquil','04-373-0100 ','Pichincha 107 y P. Yacza - Sur - Guayaquil','Banco Guayaquil S.A'),
-(3000000012,0,'0978645239', 'Raul Roberto Perez Loor','04-251-6998','Vélez 601 y García Avilés - Sur - Guayaquil'','Raul Perez'),
-(3000000013,0,'1689472258', 'Samuel Dylan Suarez Cevallos',' 04-372-3700 ','Febres Cordero 223 entre Chile y Eloy Alfaro - Sur - Guayaquil','Samuel Suarez'),
-(3000000014,0,'0973660018','Rigoberto Manuel Peña Silva','04-232-0192','Pedro Carbo 731 y Clemente Ballén - C.C. El Jardín - Guayaquil','Rigoberto Peña'),
-(3000000015,0,'0945000002', 'Loaiza Silvia Pacheco Mata','04-372-3700','Víctor Emilio Estrada 213 y Bálsamos - Norte - Guayaquil','Loaiza Pacheco');
+use alquilerdevehiculos;
 
- 
+Insert into cliente values
+(300000003,1,'0924538129001','Corporacion Favorita','022996695','Av. 6 de Diciembre y Julio Moreno - Sangolquí - Quito','Corporacion Favorita'),
+(300000004,0,'0984756328','Ana Elena Salazar Meza','095258790','Lizardo Garcia y Venezuela - Sur - Guayaquil','Ana Salazar'), 
+(300000005,1,'1890001571001','General Motors Del Ecuador','02977700 ','v. Galo Plaza Lasso Oe1-34 y Enríque Guerrero Portilla - Parque Industrial - Quito', 'General Motors Del Ecuador S.A'),
+(300000006,1,'1608900100001','Cerveceria Nacional','042598888', 'Vía Daule Km 16 1/2 - Complejo Industrial Pascuales - Guayaquil', 'Cerveceria Nacional CN S.A'),
+(300000007,0,'0875359218','Juan Jose Eloy Ichazo','0998720036','29 y la Q - Sur - Guayaquil','Juan Eloy'),
+(300000008,0,'1685489300',' Ramon Alejandro Chonillo Serrano','042682458','Av. Carlos Luis Plaza Dañín y Francisco Boloña - Norte - Guayaquil','Ramon Chonillo'),
+(300000009,0,'0952155553','Elena Rosado Yagual Ramires','043221100','Víctor Emilio Estrada 711 D y Ficus - Norrte - Guayaquil','Elena Yagual'),
+(300000010,1,'0859621591001','Nestle Planta Guayaquil','022232400','Vía a la Costa Km. 6.5, Av. del Bombero,Norte - Guayaquil','Nestle Ecuador S.A'),
+(300000011,1,'0999542615001','Banco Guayaquil','043730100 ','Pichincha 107 y P. Yacza - Sur - Guayaquil','Banco Guayaquil S.A'),
+(300000012,0,'0978645239', 'Raul Roberto Perez Loor','042516998','Vélez 601 y García Avilés - Sur - Guayaquil','Raul Perez'),
+(300000013,0,'1689472258', 'Samuel Dylan Suarez Cevallos',' 043723700 ','Febres Cordero 223 entre Chile y Eloy Alfaro - Sur - Guayaquil','Samuel Suarez'),
+(300000014,0,'0973660018','Rigoberto Manuel Peña Silva','042320192','Pedro Carbo 731 y Clemente Ballén - C.C. El Jardín - Guayaquil','Rigoberto Peña'),
+(300000015,0,'0945000002', 'Loaiza Silvia Pacheco Mata','043723700','Víctor Emilio Estrada 213 y Bálsamos - Norte - Guayaquil','Loaiza Pacheco');
+
+select *
+from cliente;
