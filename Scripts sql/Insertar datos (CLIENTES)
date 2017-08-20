@@ -1,19 +1,238 @@
-use alquilerdevehiculos;
+CREATE DATABASE AlquilerDeVehiculos;
+USE AlquilerDeVehiculos;
 
-Insert into cliente values
-(300000003,1,'0924538129001','Corporacion Favorita','022996695','Av. 6 de Diciembre y Julio Moreno - Sangolquí - Quito','Corporacion Favorita'),
-(300000004,0,'0984756328','Ana Elena Salazar Meza','095258790','Lizardo Garcia y Venezuela - Sur - Guayaquil','Ana Salazar'), 
-(300000005,1,'1890001571001','General Motors Del Ecuador','02977700 ','v. Galo Plaza Lasso Oe1-34 y Enríque Guerrero Portilla - Parque Industrial - Quito', 'General Motors Del Ecuador S.A'),
-(300000006,1,'1608900100001','Cerveceria Nacional','042598888', 'Vía Daule Km 16 1/2 - Complejo Industrial Pascuales - Guayaquil', 'Cerveceria Nacional CN S.A'),
-(300000007,0,'0875359218','Juan Jose Eloy Ichazo','0998720036','29 y la Q - Sur - Guayaquil','Juan Eloy'),
-(300000008,0,'1685489300',' Ramon Alejandro Chonillo Serrano','042682458','Av. Carlos Luis Plaza Dañín y Francisco Boloña - Norte - Guayaquil','Ramon Chonillo'),
-(300000009,0,'0952155553','Elena Rosado Yagual Ramires','043221100','Víctor Emilio Estrada 711 D y Ficus - Norrte - Guayaquil','Elena Yagual'),
-(300000010,1,'0859621591001','Nestle Planta Guayaquil','022232400','Vía a la Costa Km. 6.5, Av. del Bombero,Norte - Guayaquil','Nestle Ecuador S.A'),
-(300000011,1,'0999542615001','Banco Guayaquil','043730100 ','Pichincha 107 y P. Yacza - Sur - Guayaquil','Banco Guayaquil S.A'),
-(300000012,0,'0978645239', 'Raul Roberto Perez Loor','042516998','Vélez 601 y García Avilés - Sur - Guayaquil','Raul Perez'),
-(300000013,0,'1689472258', 'Samuel Dylan Suarez Cevallos',' 043723700 ','Febres Cordero 223 entre Chile y Eloy Alfaro - Sur - Guayaquil','Samuel Suarez'),
-(300000014,0,'0973660018','Rigoberto Manuel Peña Silva','042320192','Pedro Carbo 731 y Clemente Ballén - C.C. El Jardín - Guayaquil','Rigoberto Peña'),
-(300000015,0,'0945000002', 'Loaiza Silvia Pacheco Mata','043723700','Víctor Emilio Estrada 213 y Bálsamos - Norte - Guayaquil','Loaiza Pacheco');
+CREATE TABLE Cliente (
+  id_cliente INT,
+  ruc_ci BOOLEAN,
+  identificacion VARCHAR(20),
+  nombre  VARCHAR(40),
+  telefono VARCHAR(11),
+  direccion VARCHAR(128),
+  razon_social VARCHAR(128),
+  PRIMARY KEY (id_cliente));
+  
+INSERT INTO cliente VALUES 
+(5001,0,'1600355986','Valentina Bravo','095683695','Avenida Rio verde y Plaza Ventura 564','Valentina'),
+(5002,1,'0968631568001','Televisa','098956348','Adolfo López Mateos y Lomas de San Ángel','Televisa SA'),
+(5003,1,'0924538129001','Corporacion Favorita','022996695','Av. 6 de Diciembre y Julio Moreno - Sangolquí - Quito','Corporacion Favorita'),
+(5004,0,'0984756328','Ana Elena Salazar Meza','095258790','Lizardo Garcia y Venezuela - Sur - Guayaquil','Ana Salazar'), 
+(5005,1,'1890001571001','General Motors Del Ecuador','02977700 ','v. Galo Plaza Lasso Oe1-34 y Enríque Guerrero Portilla - Parque Industrial - Quito', 'General Motors Del Ecuador S.A'),
+(5006,1,'1608900100001','Cerveceria Nacional','042598888', 'Vía Daule Km 16 1/2 - Complejo Industrial Pascuales - Guayaquil', 'Cerveceria Nacional CN S.A'),
+(5007,0,'0875359218','Juan Jose Eloy Ichazo','0998720036','29 y la Q - Sur - Guayaquil','Juan Eloy'),
+(5008,0,'1685489300',' Ramon Alejandro Chonillo Serrano','042682458','Av. Carlos Luis Plaza Dañín y Francisco Boloña - Norte - Guayaquil','Ramon Chonillo'),
+(5009,0,'0952155553','Elena Rosado Yagual Ramires','043221100','Víctor Emilio Estrada 711 D y Ficus - Norrte - Guayaquil','Elena Yagual'),
+(5010,1,'0859621591001','Nestle Planta Guayaquil','022232400','Vía a la Costa Km. 6.5, Av. del Bombero,Norte - Guayaquil','Nestle Ecuador S.A'),
+(5011,1,'0999542615001','Banco Guayaquil','043730100 ','Pichincha 107 y P. Yacza - Sur - Guayaquil','Banco Guayaquil S.A'),
+(5012,0,'0978645239', 'Raul Roberto Perez Loor','042516998','Vélez 601 y García Avilés - Sur - Guayaquil','Raul Perez'),
+(5013,0,'1689472258', 'Samuel Dylan Suarez Cevallos',' 043723700 ','Febres Cordero 223 entre Chile y Eloy Alfaro - Sur - Guayaquil','Samuel Suarez'),
+(5014,0,'0973660018','Rigoberto Manuel Peña Silva','042320192','Pedro Carbo 731 y Clemente Ballén - C.C. El Jardín - Guayaquil','Rigoberto Peña'),
+(5015,0,'0945000002', 'Loaiza Silvia Pacheco Mata','043723700','Víctor Emilio Estrada 213 y Bálsamos - Norte - Guayaquil','Loaiza Pacheco');
+  
+  
+  CREATE TABLE Proveedor (
+  id_proveedor INT,
+  nombre VARCHAR(40),
+  direccion VARCHAR(128),
+  pais VARCHAR(30),
+  ciudad VARCHAR(30),
+  telefono VARCHAR(20),
+  e_mail VARCHAR(64),
+  PRIMARY KEY (id_proveedor));
+  
+INSERT INTO Proveedor VALUES
+(30001,'AutoMall','Cdla. Guayaquil Av. Miguel H. Alcívar frente a Torres del NorteCdla. Guayaquil Av. Miguel H. Alcívar frente a Torres del Norte','Ecuador','Guayaquil','0997275212','asesordenegocios_vehiculos@hotmail.com'),
+(30002,'Zertuche',' Calz. Lázaro Cárdenas 869 Col. La Nogalera','Mexico','Guadalajara','52 33 3837-5252','zertuche_vehiculos@sertuche.com'),
+(30003,'Wuhan Hao Rui Auto Parts','Col. Jiayu, Hubei C.P. 437200','China',' Xianning','86 071 5666-3525','Hao_RuiAuto@whuancar.com'),
+(30004,'HITACHI CHEMICAL MÉXICO: ','Encino 1020 Col. Parque Industrial, Nuevo León C.P. 67500','Mexico','Montemorelos','52 55 4169-6730','carhitachi_mex@hitachi.com'),
+(30005,'AUCTION EXPORT','4515 Chesswood Dr, Unit: X, ON M3J2V6  ','Canada','Toronto','1 416.900.3303 ',' info@auctionexport.com'),
+(30006,'Vallejo Araujo Chevrolet','Av. Occidental N52-120 y Av. La Florida','Ecuador','Quito','02 395 90 60','asesordenegocios_vehiculos@chevrolet.com');
 
-select *
-from cliente;
+
+CREATE TABLE Vehiculo (
+  matricula VARCHAR(10),
+  proveedor  INT,
+  tipo   VARCHAR(20),
+  marca VARCHAR(20),
+  año INT,
+  nombre_modelo VARCHAR(20),
+  disponibilidad BOOLEAN,
+  color VARCHAR (20),
+  capacidad INT,
+  precio  FLOAT,
+  foto LONGBLOB,
+  PRIMARY KEY (matricula),
+  FOREIGN KEY (proveedor) REFERENCES Proveedor(id_proveedor));
+  
+INSERT INTO VehiculO  VALUES
+('GSK-2068',30004,'Auto','Ford',2016,'Fusion',1,'Gris',5,42990.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Ford/2016/Fusion.jpg')),
+('GPT-5698',30001,'Pesado-Camion','Chevrolet',2017,'FVZ 34T FORDWARD',0,'Blanco',3,100990.00,LOAD_FILE('C:/proveedores/AutoMall/Pesado-Camion/Chevrolet/2017/FVZ 34T FORDWARD.jpg')),
+('GSC-2069',30005,'Auto','Kia',2014,'Rio Stylus',1,'Rojo',5, 20550.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Kia/2014/Rio Stylus.jpg')),
+('GSS-3599',30005,'Camioneta','Mazda',2015,'BT-50',1,'Gris',5,40550.00,LOAD_FILE('C:/proveedores/AutoMall/Camioneta/Mazda/2015/BT-50.jpg')),
+('GKD-9945',30006,'Camioneta','Ford',2017,'New Ranger',0,'Negro',6,100990.00,LOAD_FILE('C:/proveedores/AutoMall/Camioneta/Ford/2017/New Ranger.jpg')),
+('GDT-6033',30003,'Furgoneta','Hyundai',2016,'H1 2.5L 12 Pas',0,'Gris',9,43900.00,LOAD_FILE('C:/proveedores/AutoMall/Furgoneta/Hyundaoi/2016/H1.jpg')),
+('GFG-2198',30003,'Furgoneta','Foton',2016,'View-CS2',1,'Beige',8,33680.00,LOAD_FILE('C:/proveedores/AutoMall/Furgoneta/Foton/2016/View-CS2.jpg')),
+('GAA-4093',30004,'Auto','Chevrolet',2016,'Sail',1,'Blanco',5,9560.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Hyundai/2017/Accent.jpg')),
+('GCC-1409',30004,'Auto','Suzuki',2016,'Swift',1,'Azul',5,8450.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/SUzuki/2016/Swift.jpg')),
+('GFA-1101',30002,'Auto','Kia',2015,'Morning',0,'Rojo',5,6368.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Kia/2015/Morning.jpg')),
+('GZD-2999',30002,'Auto','Toyota',2017,'Yaris',1,'Azul',5,4738.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Toyota/2017/Yaris.jpg')),
+('GRH-0098',30002,'Auto','Nissan',2017,'Versa CL',1,'Negro',5,3310.00,LOAD_FILE('C:/proveedores/AutoMall/Auto/Nissan/2017/Versa CL.jpg')),
+('GZZ-1786',30006,'Camioneta','Mitsubishi',2016,'L-200',0,'Blanco',5,19970.00,LOAD_FILE('C:/proveedores/AutoMall/Camioneta/Mitsubishi/2016/L-200.jpg')),
+('GPL-6004',30006,'Camioneta','Toyota',2017,'Hilux',1,'Negro',5,24300.00,LOAD_FILE('C:/proveedores/AutoMall/Caomioneta/oyota/2017/Hilux.jpg')),
+('GÑK-3003',30006,'Camioneta','Volkswagen',2017,'Amarok',0,'Negro',5,34160.00,LOAD_FILE('C:/proveedores/AutoMall/Camioneta/Volkswagen/2017/Amarok.jpg')),
+('GXC-5611',30001,'Pesado-Camion','Hyundai',2015,'HD 78',0,'Blanco',3,59290.00,LOAD_FILE('C:/proveedores/AutoMall/Pesado-Camion/Hyundai/2015/HD 78.jpg')),
+('GYB-0678',30001,'Pesado-Camion','Renault',2017,'Kerax',1,'Blanco',3,60560.00,LOAD_FILE('C:/proveedores/AutoMall/Pesado-Camion/Renault/2017/Kerax.jpg')),
+('GMM-2190',30001,'Pesado-Camion','QMS',2017,'Cronos',1,'Blanco',3,34790.00,LOAD_FILE('C:/proveedores/AutoMall/Pesado-Camion/QMS/2017/Cronos.jpg'));
+
+
+
+CREATE TABLE Empleado (
+  id_empleado INT,
+  nombre VARCHAR(30),
+  apellido VARCHAR(30),
+  cedula VARCHAR(10),
+  usuario VARCHAR(15),
+  contrasena VARCHAR(16),
+  sueldo FLOAT,
+  fecha_inicio DATETIME,
+  puesto VARCHAR(128),
+  grupo_trabajo VARCHAR(128),
+  hora_entrada TIME,
+  hora_salida TIME,
+  telefono VARCHAR(11),
+  direccion VARCHAR(128),
+  PRIMARY KEY (id_empleado));
+  
+INSERT INTO Empleado VALUES 
+(10001,'Tinoco Margarita','Del Rocio Choez',0951603568,'timaro','soyadmin01',900.60,'2017-06-26  08:00:00',NULL,NULL,'08:00:00','16:00:00','0993235670','Capitán Najera & Los Ríos'),
+(10002,'Oswaldo Luis',' Guachamin Noruega',0968942645,'oswgua','contra12k',900.60,'2017-06-30  16:00:00',NULL,NULL,'16:00:00','00:00:00','0989631152','Pedro Pablo Gómez y la 15'),
+(10003,'Luis Raul','Guaman Guaman',0962532456,'Luguam','contra25j',750.60,'2015-07-16 08:00:00',NULL,NULL,'08:00:00','16:00:00','0968946782','Ayacucho 72, Piso 01'),
+(10004, 'Solange Leonela' , 'Cobeña Salas' , 0911891120, 'leoanc', 'leonasala', 360.00,'2017-11-11 08:00:00',NULL,NULL,'08:00:00','16:00:00', '0850997709', 'Malecón y Av. Quito Esq. - DURAN'),
+(10005, 'Joseline Maria' , 'Mora Moran' , 0990012345, 'josmam', 'joshy1970', 400.00,'2017-12-07 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0942067435', 'Sedalana y la 16 AVA'),
+(10006, 'Jessenia Elizabeth' , 'Cedeño Lopez' , 0944612906, 'jessce', 'son2001', 400.00,'2017-01-25 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0789542000', 'Colón y Boyacá'),
+(10007, 'Fabricio Angel' , 'Pacheco Sumba' , 0990011127, 'fabria', 'dylanand07', 400.00,'2016-11-24 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0711009345', 'La 16 y la B'),
+(10008, 'Gustavo Roger' , 'Burgos Burbano' , 1804410981, 'gusbur', 'happyfet', 500.50,'2017-03-18 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0709213421', 'Lizardo Barcia y la 15'),
+(10009, 'Elena Maltilde' , 'Choez Salazar' , 1500955981 , 'elmach', 'nurseishert', 400.50,'2017-07-17 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0924332199', 'Julian Coronel y Córdova'),
+(10010, 'Jordy Slaiter' , 'Burgos Holguin' , 0909754321, 'jordyb', 'nanatsu96', 400.50,'2017-05-28 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0997654321', 'Venezuela y Portete Esq.'),
+(10011,'Silvia Malena' , 'Siguenza Loor' , 0973628996, 'simasi', 'house1972', 400.50,'2017-06-14 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0900552217', 'Samanes 6 Solar 15 Villa 1557'),
+(10012, 'Jose Alberto' , 'Reyes Tejada' , 0987654380, 'josete', 'kataheart23', 400.50,'2016-10-08 07:00:00',NULL,NULL,'07:00:00','16:00:00', '9005674320', 'Sauces 8 mz 9 Solar 90'),
+(10013, 'Max Angello' , 'Loor Silva' , 0922409654, 'maxloo', 'maximo1976', 400.50,'2016-12-05 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0922981210', 'Ceibos Norte Ciudadela Colinas del Norte Sl. 30'),
+(10014, 'Angela del Carmen' , 'Salazar Palma' , 0947650909, 'ansapa', 'delcarmen4', 384.50,'2017-01-20 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0732009122', 'Venezuela y Jose de Antepara'),
+(10015, 'Freedy Isaias' , 'Crespo Mata' , 1209600324, 'frecre', 'crespoiam', 400.50,'2017-10-20 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0871209546', 'Mucho Lote II mz 1098 sl 1543');
+
+
+CREATE TABLE Departamento (
+  id_departamento INT,
+  id_supervisor INT,
+  nombre  VARCHAR(45),
+  PRIMARY KEY (id_departamento),
+  FOREIGN KEY (id_supervisor) REFERENCES Empleado(id_empleado));
+
+INSERT INTO departamento VALUES 
+(100,10009, 'Administracion' ),
+(200 ,10011, 'Alquiler'),
+(300 ,10015, 'Finanzas y Contabilidad'),
+(400 ,10012,'Atencion al cliente'),
+(500 ,10010, 'Recursos Humanos'),
+(600 ,10006, 'Marketing y Comunicacion'),
+(700 ,10001, 'Reparacion Vehiculo');
+
+
+
+CREATE TABLE Reparacion (
+  idReparacion INT,
+  empleado INT,
+  vehiculo VARCHAR(10),
+  costo FLOAT,
+  fecha_reparación DATETIME,
+  descripcion VARCHAR(256),
+  PRIMARY KEY (idReparacion),
+  FOREIGN KEY (empleado) REFERENCES Empleado(id_empleado),
+  FOREIGN KEY (vehiculo) REFERENCES Vehiculo(matricula));
+  
+INSERT INTO reparacion VALUES 
+(001,10001,'GPT-5698',50.00,'2017-06-19  08:00:00', 'Se realizo el cambio de aceite'),
+(002,10003,'GKD-9945',100.00,'2017-05-03  10:00:00', 'Se implemento  una valvula de gasolina nueva, la antigua estaba dañada'),
+(003,10003,'GFA-1101',500.00,'2016-12-20  16:00:00', 'Se realizo el cambio de las 4 llantas, estaban muy lisas'),
+(004,10001,'GZZ-1786', 20.00,'2017-06-29  09:00:00', 'Se realizo un cambio a las luces delantera izquierda porque ya no encendian'),
+(005,10004,'GXC-5611', 100.00,'2017-06-19  18:00:00','Se realizo un cambio al retrovisor exterior derecho debido a que estaba roto '),
+(006,10005,'GCC-1409', 25.00,'2017-02-05  13:00:00','Se realizo un cambio a los limpiaparabrisas porque ya no funcionaban'),
+(007,10005,'GSK-2068', 80.00,'2017-07-28  11:30:00', 'Se hizo la respectiva alineacion de frenos'),
+(008,10002,'GFG-2198', 50.00,'2016-03-05  08:40:00', 'Se realizo un cambio al filtro de aire porque ya no funcionaban'),
+(009,10003,'GMM-2190',80.00, '2016-09-15  14:00:00','Se realizo la respectiva alineacion de frenos' ),
+(010,10002,'GAA-4093',50.00, '2017-08-02  17:00:00','Se realizo el repectivo cambio de aceite');
+
+
+CREATE TABLE Cuidado (
+  empleado INT,
+  vehiculo VARCHAR(10),
+  observaciones VARCHAR(1024),
+  PRIMARY KEY (empleado, vehiculo),
+  FOREIGN KEY (empleado) REFERENCES Empleado(id_empleado),
+  FOREIGN KEY (vehiculo) REFERENCES Vehiculo(matricula));
+  
+INSERT INTO cuidado VALUES 
+(10001,'GPT-5698','El vehiculo necesita un cambio de aceite'),
+(10002, 'GMM-2190','No se presento ningun tipo se conveniente en el turno de trabajo.'),
+(10003,'GKD-9945','El vehiculo presento un incoveniente en la valvula de la gasolina.'),
+(10004,'GDT-6033','No se presento ningun tipo se conveniente en el turno de trabajo.'),
+(10005,'GFA-1101','Las llantas del vehiculo estan muy lisas.'),
+(10006,'GZZ-1786','La luces delantera de la parte izquierda del vehiculo no funciona.'),
+(10006,'GÑK-3003','No se presento ningun tipo se conveniente en el turno de trabajo.'),
+(10002,'GXC-5611','El retrovisor exterior del lado derecho esta roto.'),
+(10001,'GCC-1409','Los limpiaparabrisas ya no funcionan'),
+(10002,'GSK-2068','Los frenos no estan alineados.'),
+(10003,'GPL-6004','No se presento ningun tipo se conveniente en el turno de trabajo.'),
+(10007,'GFG-2198','Relizar un cambio al filtro de aire.');
+
+  
+CREATE TABLE AlquilerVehiculo (
+  idAlquilerVehiculo INT,
+  numero_dias INT,
+  fecha_salida DATETIME,
+  fecha_llegada DATETIME,
+  cliente INT,
+  vehiculo  VARCHAR(10),
+  kilometraje_salida INT,
+  nivel_gasolina_salida FLOAT,
+  PRIMARY KEY (idAlquilerVehiculo),
+  FOREIGN KEY(cliente) REFERENCES Cliente(id_cliente),
+  FOREIGN KEY(vehiculo) REFERENCES Vehiculo(matricula));
+  
+INSERT INTO alquilervehiculo VALUES
+(200,3,'2017-09-10 23:30:40','2017-09-13 20:15:00',5001,'GSK-2068', 10234,10.050),
+(201,5,'2016-02-05 20:30:58','2016-02-07 20:06:48',5005,'GPT-5698', 6540,12.000),
+(202,2,'2016-01-01 06:30:40','2016-01-02 19:25:35',5013,'GSC-2069', 7987,4.090),
+(203,5,'2017-10-10 16:30:00','2017-10-16 17:20:34',5008,'GSS-3599', 17478,10.890),
+(204,3,'2015-02-20 17:35:45','2015-02-24 19:54:29',5009,'GKD-9945', 2335,8.200),
+(205,1,'2016-11-06 18:30:00','2016-11-07 20:15:09',5004,'GDT-6033', 10067,5.450),
+(206,7,'2017-07-25 06:00:00','2017-08-02 12:45:45',5011,'GFG-2198', 2234,12.050),
+(207,10,'2017-08-10 13:00:40','2017-08-21 18:00:00',5007,'GMM-2190', 7687,16.340),
+(208,8,'2016-12-31 10:35:58','2017-01-09 19:29:39',5010,'GYB-0678', 2045,9.030),
+(209,5,'2015-11-02 10:36:40','2015-11-08 16:39:56',5006,'GÑK-3003', 1009,7.990),
+(210,4,'2017-05-26 18:49:40','2017-05-31 20:45:30',5012,'GPL-6004', 13209,14.500);
+
+CREATE TABLE TipoPago (
+  id_pago INT,
+  idAlquilerVehiculo INT,
+  fecha_pago DATETIME,
+  valor_pago FLOAT,
+  PRIMARY KEY (id_pago),
+  FOREIGN KEY(idAlquilerVehiculo) REFERENCES AlquilerVehiculo(idAlquilerVehiculo));
+  
+  INSERT INTO tipopago VALUES 
+(600,200,'2017-09-10 23:40:40',300.00),
+(601,201,'2016-02-05 20:40:58',500.00),
+(602,202,'2016-01-01 06:40:40',200.00),
+(603,203,'2017-10-10 16:40:00',550.00),
+(604,204,'2015-02-20 17:55:45',250.00),
+(605,205,'2016-11-06 18:50:00',500.00),
+(606,206,'2017-07-25 06:20:00',780.00),
+(607,207,'2017-08-10 13:20:40',100.00),
+(608,208,'2016-12-31 10:45:58',950.00),
+(609,209,'2015-11-02 10:56:40',660.00),
+(610,210,'2017-05-26 18:59:40',500.00);
+  
+
+SELECT * FROM empleado;
+SELECT * FROM cliente;
+SELECT * FROM vehiculo;
