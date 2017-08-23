@@ -75,6 +75,11 @@ public class ListarVehiculosController implements Initializable{
         Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ModificarDisponibilidadVehiculo.fxml");
 
     }
+    
+    @FXML
+    void modificarVehiculo(MouseEvent event) throws IOException {
+    }
+    
     public void setApp(Stage app) {
         this.app = app;
     }
