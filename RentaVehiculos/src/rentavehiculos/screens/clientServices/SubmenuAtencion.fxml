@@ -5,7 +5,7 @@
 
 <Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.clientServices.SubmenuAtencionController">
    <children>
-      <Button fx:id="consultarVehiculo" layoutX="407.0" layoutY="64.0" mnemonicParsing="false" />
+      <Button fx:id="consultarVehiculo" layoutX="407.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#consultarVehiculo" />
       <Button fx:id="consultarCliente" layoutX="407.0" layoutY="103.0" mnemonicParsing="false" />
       <Button fx:id="agregarCliente" layoutX="407.0" layoutY="140.0" mnemonicParsing="false" />
       <Button fx:id="alquilarVehiculo" layoutX="407.0" layoutY="200.0" mnemonicParsing="false" />

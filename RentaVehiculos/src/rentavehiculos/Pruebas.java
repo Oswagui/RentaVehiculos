@@ -39,7 +39,7 @@ public class Pruebas extends Application {
         
         //stage = ConsultarClienteCreator.consultarClienteCreator();
         //stage=AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/SubmenuAtencion.fxml");
-        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/ConsultarVehiculo.fxml");
+        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
         stage.setTitle("RentaVehiculo 2.0"); 
         stage.show();
         
@@ -88,6 +88,8 @@ public class Pruebas extends Application {
     
     public void mostrarAnyVentana(String xmlSource) throws IOException{
         Stage s=AnyCreator.anyCreator(xmlSource);
+        s.setResizable(false);
+        s.setMaximized(false);
         s.setTitle("RentaVehiculo 2.0"); 
         s.show();
         

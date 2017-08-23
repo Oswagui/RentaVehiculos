@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
         
         String u = this.user.getText().trim();
         String p = this.password.getText().trim();
-        
+        System.out.println(u + " " +p);
         this.esValido = this.validarIngreso(u, p);
         
         if (this.esValido) {
@@ -112,7 +112,6 @@ public class LoginController implements Initializable {
                     System.out.println("SUPERVISOR");
                 }
                 Stage stageLogin = (Stage)((Node)this.fondo).getScene().getWindow();
-                stageLogin.hide();
                 ventana.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
                     public void handle(WindowEvent event) {

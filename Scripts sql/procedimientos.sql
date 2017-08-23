@@ -7,7 +7,7 @@ create procedure login (in usuario varchar(50), in contrasenia varchar(50), out 
 begin 
 	select count(id_empleado), puesto, id_empleado into numUsuario, rol, idUser
     from empleado
-    where usuario = empleado.cedula and contrasenia = empleado.contrasena and empleado.contrasena is not null;
+    where usuario = empleado.usuario and contrasenia = empleado.contrasena and empleado.contrasena is not null;
 end//
 
 delimiter ;
@@ -204,9 +204,9 @@ delimiter |
 
 CREATE PROCEDURE obtenerTipos()
 BEGIN
-	SELECT distinct color
+	SELECT distinct tipo
     from vehiculo
-    order by color;
+    order by tipo;
 END |
 
 
@@ -227,9 +227,7 @@ end|
 
 delimiter ;
 
-
-
-
+drop procedure if exists consultarCuidados;
 delimiter |
 CREATE PROCEDURE consultarCuidados(IN cedulaEmpleadoI INT, IN vehiculoI VARCHAR(20))
 BEGIN
@@ -244,13 +242,48 @@ end|
 delimiter ;
 
 
+drop procedure if exists obtenerMatriculas;
+delimiter |
+CREATE PROCEDURE obtenerMatriculas()
+BEGIN
+	SELECT matricula
+    from vehiculo
+    order by matricula;
+end|
+
+delimiter ;
 
 
+drop procedure if exists obtenerRangoAños;
+delimiter |
+CREATE PROCEDURE obtenerRangoAños(OUT maxAño int, OUT minAño int)
+BEGIN
+	SELECT max(año) , min(año) into maxAño,minAño
+    from vehiculo;
+end|
+
+delimiter ;
+
+drop procedure if exists obtenerRangoCapacidad;
+delimiter |
+CREATE PROCEDURE obtenerRangoCapacidad(OUT maxCapacidad int, OUT minCapacidad int)
+BEGIN
+	SELECT max(capacidad) , min(capacidad) into maxCapacidad,minCapacidad
+    from vehiculo;
+end|
+
+delimiter ;
 
 
+drop procedure if exists obtenerRangoPrecio;
+delimiter |
+CREATE PROCEDURE obtenerRangoPrecio(OUT maxPrecio float, OUT minPrecio float)
+BEGIN
+	SELECT max(precio) , min(precio) into maxPrecio,minPrecio
+    from vehiculo;
+end|
 
-
-
+delimiter ;
 
 
 

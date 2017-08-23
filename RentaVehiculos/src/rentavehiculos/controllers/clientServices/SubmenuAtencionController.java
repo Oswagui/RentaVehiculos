@@ -123,7 +123,7 @@ public class SubmenuAtencionController implements Initializable {
     public void consultarVehiculo(){
         Stage ventana = null;
         try {
-            ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/ConsultarVehiculo.fxml");
+            ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
         } catch (IOException ex) {
             System.out.println("Error");
         }

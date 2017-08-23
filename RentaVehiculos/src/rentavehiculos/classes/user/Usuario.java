@@ -122,6 +122,7 @@ public class Usuario {
             // Ejecuta el procedimiento almacenado
             cst.execute();
             // Se obtienen la salida del procedimineto almacenado
+            System.out.println("Entra");
             existeU = cst.getInt(3);
             rol = cst.getString(4);
             idU = cst.getInt(5);
@@ -136,7 +137,7 @@ public class Usuario {
         validadorUsuario.add(Integer.toString(existeU));
         validadorUsuario.add(rol);
         validadorUsuario.add(Integer.toString(idU));
-        
+        System.out.println(validadorUsuario);
         return validadorUsuario;
     }              
             
