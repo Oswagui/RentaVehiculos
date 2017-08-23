@@ -113,11 +113,8 @@ public class Usuario {
                     prepareCall("{call  login(?,?,?,?,?)}");
             // Parametro 1 del procedimiento almacenado
             
-            //String username= "fblayedr";
             cst.setString(1, usuario);
-            //String contrasenia= "turtoise";
             cst.setString(2, clave);
-
             // Definimos los tipos de los parametros de salida del procedimiento almacenado
             cst.registerOutParameter(3, java.sql.Types.INTEGER);
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);

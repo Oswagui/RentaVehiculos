@@ -6,23 +6,30 @@
 package rentavehiculos.controllers.login;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import rentavehiculos.classes.alerts.GeneralAlert;
 import rentavehiculos.classes.alerts.InfoAlert;
 import rentavehiculos.classes.alerts.WarningAlert;
 import rentavehiculos.classes.constants.Constantes;
 import rentavehiculos.classes.user.Usuario;
 import rentavehiculos.classes.validaciones.Validaciones;
+import rentavehiculos.creators.AnyCreator;
 
 /**
  *
@@ -66,7 +73,6 @@ public class LoginController implements Initializable {
         ArrayList<String> validador;
         
         String u = this.user.getText().trim();
-        u=u.substring(1);
         String p = this.password.getText().trim();
         
         this.esValido = this.validarIngreso(u, p);
@@ -86,7 +92,7 @@ public class LoginController implements Initializable {
                 usuarioSistema.setContrasenia(p);
                 usuarioSistema.setPuesto(validador.get(1));
                 usuarioSistema.setIdEmpleado(Integer.parseInt(validador.get(2)));
-
+                Stage ventana = null;
                 if (usuarioSistema.getPuesto().equalsIgnoreCase("Adminin of DB")) {
                    // this.cargarAsistente(event, idRes);
                     System.out.println("ADMIN");
@@ -94,12 +100,30 @@ public class LoginController implements Initializable {
                 else if (usuarioSistema.getPuesto().equalsIgnoreCase("Servicio al Cliente")) {
                     //this.cargarCliente(event);
                     System.out.println("SERVICIO");
+                    
+                    try {
+                        ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/SubmenuAtencion.fxml");
+                    } catch (IOException ex) {
+                        System.out.println("error");
+                    }
                 }
                 else if (usuarioSistema.getPuesto().equalsIgnoreCase("Supervisor")) {
                     //this.cargarCliente(event);
                     System.out.println("SUPERVISOR");
                 }
-
+                Stage stageLogin = (Stage)((Node)this.fondo).getScene().getWindow();
+                stageLogin.hide();
+                ventana.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        System.out.println("No puede cerrar la ventana asi");
+                        event.consume();}
+                });
+                ventana.setResizable(false);
+                ventana.setMaximized(false);
+                ventana.showAndWait();
+                stageLogin.show();
+                this.limpiarCampos();
             }
             else {
                 this.limpiarCampos();

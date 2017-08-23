@@ -63,7 +63,7 @@ end|
 delimiter ;
 
 
-drop procedure if exists modificarDisponibilidadVehiculo;
+drop procedure if exists getNombreProveedor;
 
 
 delimiter |
@@ -79,7 +79,7 @@ end |
 delimiter ;
 
 
-
+drop procedure if exists insertarCliente;
 delimiter |
 
 CREATE PROCEDURE insertarCliente (IN id_clienteI INT, IN ruc_ciI TINYINT, IN identificacionI VARCHAR(50), IN nombreI VARCHAR(50), 
@@ -92,7 +92,7 @@ END |
 delimiter ;
 
 
-
+drop procedure if exists insertarVehiculo;
 delimiter |
 
 CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI INT, IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
@@ -106,7 +106,7 @@ END |
 delimiter ;
 
 
-
+drop procedure if exists insertarEmpleado;
 delimiter |
 
 CREATE PROCEDURE insertarEmpleado(IN id_empleadoI INT,  IN id_departamentoI INT, IN cedulaI VARCHAR(20), IN contrasenaI VARCHAR(20),
@@ -121,7 +121,7 @@ END |
 delimiter ;
 
 
-
+drop procedure if exists insertarDepartamento;
 delimiter |
 
 CREATE PROCEDURE insertarDepartamento(IN id_departamentoI INT, IN id_supervisorI INT, nombreI VARCHAR(50))
@@ -133,7 +133,7 @@ END |
 delimiter ;
 
 
-
+drop procedure if exists insertarCuidado;
 delimiter |
 
 CREATE PROCEDURE insertarCuidado(IN empleadoI INT, IN vehiculoI VARCHAR(20), observacionesI VARCHAR(2046))
@@ -146,7 +146,7 @@ delimiter ;
 
 
 
-
+drop procedure if exists insertarReparacion;
 delimiter |
 
 CREATE PROCEDURE insertarReparacion(IN idReparacionI INT,IN empleadoI INT, IN vehiculoI VARCHAR(20), IN costoI FLOAT, 
@@ -160,7 +160,7 @@ delimiter ;
 
 
 
-
+drop procedure if exists insertarProveedor;
 delimiter |
 
 CREATE PROCEDURE insertarProveedor(IN id_proveedorI INT, IN nombreI VARCHAR(80), IN direccionI VARCHAR(256), IN paisI VARCHAR(60), 
@@ -174,7 +174,7 @@ delimiter ;
 
 
 
-
+drop procedure if exists modificarDisponibilidadVehiculo;
 delimiter |
 
 CREATE PROCEDURE modificarDisponibilidadVehiculo(IN matriculaI VARCHAR(20), IN disponibilidadI TINYINT)
@@ -186,9 +186,27 @@ END |
 
 delimiter ;
 
+drop procedure if exists obtenerColores;
+delimiter |
 
+CREATE PROCEDURE obtenerColores()
+BEGIN
+	SELECT distinct color
+    from vehiculo
+    order by color;
+END |
 
+delimiter ;
 
+drop procedure if exists obtenerTipos;
+delimiter |
+
+CREATE PROCEDURE obtenerTipos()
+BEGIN
+	SELECT distinct color
+    from vehiculo
+    order by color;
+END |
 
 
 

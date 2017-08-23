@@ -13,7 +13,7 @@ import com.mysql.jdbc.Statement;
 public class Conexion {
 
     private String _usuario = "root";
-    private String _pwd = "harold";
+    private String _pwd = "";
     private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
     private static final String DATABASE = "AlquilerDeVehiculos";
     static String _url = "jdbc:mysql://localhost:3306/" + DATABASE;

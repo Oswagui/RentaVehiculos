@@ -38,7 +38,8 @@ public class Pruebas extends Application {
     public void start(Stage stage) throws Exception {
         
         //stage = ConsultarClienteCreator.consultarClienteCreator();
-        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
+        //stage=AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/SubmenuAtencion.fxml");
+        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/ConsultarVehiculo.fxml");
         stage.setTitle("RentaVehiculo 2.0"); 
         stage.show();
         
