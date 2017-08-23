@@ -63,7 +63,6 @@ end|
 delimiter ;
 
 
-drop procedure if exists modificarDisponibilidadVehiculo;
 
 
 delimiter |
@@ -189,6 +188,41 @@ delimiter ;
 
 
 
+delimiter |
+CREATE PROCEDURE consultarReparaciones(IN cedulaEmpleadoI INT, IN vehiculoI VARCHAR(20), IN costoI FLOAT, IN fecha_reparacionI DATETIME)
+BEGIN
+	SELECT e.nombre as Nombre_Empleado, e.apellido as Apellido_Empleado, v.matricula as Placa_Vehiculo, r.costo as Costo_Reparacion,
+	r.fecha_reparacion as Fecha_Rep_, r.descripcion as Descripcion_Reparación
+	FROM Reparacion r JOIN Empleado e ON r.empleado=e.id_empleado
+	JOIN Vehiculo v ON r.vehiculo=v.matricula
+	WHERE (r.costo=costoI OR costoI IS NULL) AND (r.fecha_reparacion=fecha_reparacionI OR fecha_reparacionI IS NULL) AND 
+	(v.matricula=vehiculoI OR vehiculoI IS NULL) AND (e.cedula=cedulaEmpleadoI OR cedulaEmpleadoI IS NULL);
+		
+	
+end|
+
+delimiter ;
+
+
+
+
+delimiter |
+CREATE PROCEDURE consultarCuidados(IN cedulaEmpleadoI INT, IN vehiculoI VARCHAR(20))
+BEGIN
+	SELECT e.nombre as Nombre_Empleado, e.apellido as Apellido_Empleado, v.matricula as Placa_Vehiculo,
+    c.observaciones as Observaciones_Cuidado
+	FROM Cuidado c JOIN Empleado e ON c.empleado=e.id_empleado
+	JOIN Vehiculo v ON c.vehiculo=v.matricula
+	WHERE (v.matricula=vehiculoI OR vehiculoI IS NULL) AND (e.cedula=cedulaEmpleadoI OR cedulaEmpleadoI IS NULL);
+	
+end|
+
+delimiter ;
+
+
+
+
+drop procedure if exists consultarReparaciones;
 
 
 
