@@ -87,6 +87,7 @@ INSERT INTO VehiculO  VALUES
 
 CREATE TABLE Empleado (
   id_empleado INT,
+  id_departamento INT,
   nombre VARCHAR(30),
   apellido VARCHAR(30),
   cedula VARCHAR(10),
@@ -101,23 +102,25 @@ CREATE TABLE Empleado (
   telefono VARCHAR(11),
   direccion VARCHAR(128),
   PRIMARY KEY (id_empleado));
+
+
   
 INSERT INTO Empleado VALUES 
-(10001,'Tinoco Margarita','Del Rocio Choez',0951603568,'timaro','soyadmin01',900.60,'2017-06-26  08:00:00',NULL,NULL,'08:00:00','16:00:00','0993235670','Capitán Najera & Los Ríos'),
-(10002,'Oswaldo Luis',' Guachamin Noruega',0968942645,'oswgua','contra12k',900.60,'2017-06-30  16:00:00',NULL,NULL,'16:00:00','00:00:00','0989631152','Pedro Pablo Gómez y la 15'),
-(10003,'Luis Raul','Guaman Guaman',0962532456,'Luguam','contra25j',750.60,'2015-07-16 08:00:00',NULL,NULL,'08:00:00','16:00:00','0968946782','Ayacucho 72, Piso 01'),
-(10004, 'Solange Leonela' , 'Cobeña Salas' , 0911891120, 'leoanc', 'leonasala', 360.00,'2017-11-11 08:00:00',NULL,NULL,'08:00:00','16:00:00', '0850997709', 'Malecón y Av. Quito Esq. - DURAN'),
-(10005, 'Joseline Maria' , 'Mora Moran' , 0990012345, 'josmam', 'joshy1970', 400.00,'2017-12-07 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0942067435', 'Sedalana y la 16 AVA'),
-(10006, 'Jessenia Elizabeth' , 'Cedeño Lopez' , 0944612906, 'jessce', 'son2001', 400.00,'2017-01-25 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0789542000', 'Colón y Boyacá'),
-(10007, 'Fabricio Angel' , 'Pacheco Sumba' , 0990011127, 'fabria', 'dylanand07', 400.00,'2016-11-24 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0711009345', 'La 16 y la B'),
-(10008, 'Gustavo Roger' , 'Burgos Burbano' , 1804410981, 'gusbur', 'happyfet', 500.50,'2017-03-18 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0709213421', 'Lizardo Barcia y la 15'),
-(10009, 'Elena Maltilde' , 'Choez Salazar' , 1500955981 , 'elmach', 'nurseishert', 400.50,'2017-07-17 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0924332199', 'Julian Coronel y Córdova'),
-(10010, 'Jordy Slaiter' , 'Burgos Holguin' , 0909754321, 'jordyb', 'nanatsu96', 400.50,'2017-05-28 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0997654321', 'Venezuela y Portete Esq.'),
-(10011,'Silvia Malena' , 'Siguenza Loor' , 0973628996, 'simasi', 'house1972', 400.50,'2017-06-14 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0900552217', 'Samanes 6 Solar 15 Villa 1557'),
-(10012, 'Jose Alberto' , 'Reyes Tejada' , 0987654380, 'josete', 'kataheart23', 400.50,'2016-10-08 07:00:00',NULL,NULL,'07:00:00','16:00:00', '9005674320', 'Sauces 8 mz 9 Solar 90'),
-(10013, 'Max Angello' , 'Loor Silva' , 0922409654, 'maxloo', 'maximo1976', 400.50,'2016-12-05 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0922981210', 'Ceibos Norte Ciudadela Colinas del Norte Sl. 30'),
-(10014, 'Angela del Carmen' , 'Salazar Palma' , 0947650909, 'ansapa', 'delcarmen4', 384.50,'2017-01-20 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0732009122', 'Venezuela y Jose de Antepara'),
-(10015, 'Freedy Isaias' , 'Crespo Mata' , 1209600324, 'frecre', 'crespoiam', 400.50,'2017-10-20 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0871209546', 'Mucho Lote II mz 1098 sl 1543');
+(10001,700,'Tinoco Margarita','Del Rocio Choez',0951603568,'timaro','soyadmin01',900.60,'2017-06-26  08:00:00',NULL,NULL,'08:00:00','16:00:00','0993235670','Capitán Najera & Los Ríos'),
+(10002,NULL,'Oswaldo Luis',' Guachamin Noruega',0968942645,'oswgua','contra12k',900.60,'2017-06-30  16:00:00',NULL,NULL,'16:00:00','00:00:00','0989631152','Pedro Pablo Gómez y la 15'),
+(10003,NULL,'Luis Raul','Guaman Guaman',0962532456,'Luguam','contra25j',750.60,'2015-07-16 08:00:00',NULL,NULL,'08:00:00','16:00:00','0968946782','Ayacucho 72, Piso 01'),
+(10004,NULL,'Solange Leonela' , 'Cobeña Salas' , 0911891120, 'leoanc', 'leonasala', 360.00,'2017-11-11 08:00:00',NULL,NULL,'08:00:00','16:00:00', '0850997709', 'Malecón y Av. Quito Esq. - DURAN'),
+(10005,NULL, 'Joseline Maria' , 'Mora Moran' , 0990012345, 'josmam', 'joshy1970', 400.00,'2017-12-07 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0942067435', 'Sedalana y la 16 AVA'),
+(10006,600, 'Jessenia Elizabeth' , 'Cedeño Lopez' , 0944612906, 'jessce', 'son2001', 400.00,'2017-01-25 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0789542000', 'Colón y Boyacá'),
+(10007,400, 'Fabricio Angel' , 'Pacheco Sumba' , 0990011127, 'fabria', 'dylanand07', 400.00,'2016-11-24 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0711009345', 'La 16 y la B'),
+(10008,600, 'Gustavo Roger' , 'Burgos Burbano' , 1804410981, 'gusbur', 'happyfet', 500.50,'2017-03-18 16:00:00',NULL,NULL,'16:00:00','00:00:00', '0709213421', 'Lizardo Barcia y la 15'),
+(10009,100, 'Elena Maltilde' , 'Choez Salazar' , 1500955981 , 'elmach', 'nurseishert', 400.50,'2017-07-17 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0924332199', 'Julian Coronel y Córdova'),
+(10010,500, 'Jordy Slaiter' , 'Burgos Holguin' , 0909754321, 'jordyb', 'nanatsu96', 400.50,'2017-05-28 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0997654321', 'Venezuela y Portete Esq.'),
+(10011,200,'Silvia Malena' , 'Siguenza Loor' , 0973628996, 'simasi', 'house1972', 400.50,'2017-06-14 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0900552217', 'Samanes 6 Solar 15 Villa 1557'),
+(10012,400, 'Jose Alberto' , 'Reyes Tejada' , 0987654380, 'josete', 'kataheart23', 400.50,'2016-10-08 07:00:00',NULL,NULL,'07:00:00','16:00:00', '9005674320', 'Sauces 8 mz 9 Solar 90'),
+(10013,200, 'Max Angello' , 'Loor Silva' , 0922409654, 'maxloo', 'maximo1976', 400.50,'2016-12-05 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0922981210', 'Ceibos Norte Ciudadela Colinas del Norte Sl. 30'),
+(10014,200, 'Angela del Carmen' , 'Salazar Palma' , 0947650909, 'ansapa', 'delcarmen4', 384.50,'2017-01-20 07:00:00',NULL,NULL,'07:00:00','16:00:00', '0732009122', 'Venezuela y Jose de Antepara'),
+(10015,300, 'Freedy Isaias' , 'Crespo Mata' , 1209600324, 'frecre', 'crespoiam', 400.50,'2017-10-20 00:00:00',NULL,NULL,'00:00:00','08:00:00', '0871209546', 'Mucho Lote II mz 1098 sl 1543');
 
 
 CREATE TABLE Departamento (
@@ -231,7 +234,11 @@ CREATE TABLE TipoPago (
 (608,208,'2016-12-31 10:45:58',950.00),
 (609,209,'2015-11-02 10:56:40',660.00),
 (610,210,'2017-05-26 18:59:40',500.00);
-  
+ 
+ 
+ALTER TABLE Empleado
+ADD CONSTRAINT FOREIGN KEY(id_departamento) REFERENCES Departamento(id_departamento);
+
 
 SELECT * FROM empleado;
 SELECT * FROM cliente;
