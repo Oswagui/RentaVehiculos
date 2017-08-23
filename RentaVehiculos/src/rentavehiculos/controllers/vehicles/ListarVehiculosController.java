@@ -41,12 +41,15 @@ public class ListarVehiculosController implements Initializable{
     private TableColumn<Vehiculo,String> matricula;
 
     @FXML
-    void volver(MouseEvent event) {
+    void volver(MouseEvent event) throws IOException {
+        cerrarVentana();
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
 
     }
 
     @FXML
     void salir(MouseEvent event) {
+        cerrarVentana();
 
     }
 
@@ -62,7 +65,7 @@ public class ListarVehiculosController implements Initializable{
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
         Stage stage = (Stage) vehiculos.getScene().getWindow();
-        //stage.close(); //Quitar Comentario para cerrar la ventana actual
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
         Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/InfoVehiculo.fxml");
     }
 
@@ -71,13 +74,14 @@ public class ListarVehiculosController implements Initializable{
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
         Stage stage = (Stage) vehiculos.getScene().getWindow();
-        //stage.close(); //Quitar Comentario para cerrar la ventana actual
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
         Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ModificarDisponibilidadVehiculo.fxml");
 
     }
     
     @FXML
     void modificarVehiculo(MouseEvent event) throws IOException {
+        
     }
     
     public void setApp(Stage app) {
@@ -88,6 +92,11 @@ public class ListarVehiculosController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         matricula.setCellValueFactory(new PropertyValueFactory<Vehiculo,String>("matricula"));
         estado.setCellValueFactory(new PropertyValueFactory<Vehiculo,String>("estado"));
+    }
+    
+    public void cerrarVentana(){
+        Stage stage = (Stage) vehiculos.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
     }
     
 }
