@@ -30,11 +30,12 @@
                   </TableView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="850.0" spacing="50.0">
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="850.0" spacing="40.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#cargarLista" prefHeight="30.0" prefWidth="108.0" text="Cargar Lista" textAlignment="CENTER" textOverrun="CLIP" />
                   <Button fx:id="showInfoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#verVehiculo" prefHeight="30.0" prefWidth="108.0" text="Ver Vehículo" textAlignment="CENTER" textOverrun="CLIP" />
-                  <Button fx:id="modifyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#modificarDisponibilidad" prefHeight="30.0" prefWidth="108.0" text="Modificar Disponibilidad" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Button fx:id="modifyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#modificarDisponibilidad" prefHeight="30.0" prefWidth="146.0" text="Modificar Disponibilidad" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Button fx:id="modifyButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#modificarDisponibilidad" prefHeight="30.0" prefWidth="146.0" text="Modificar Vehículo" textAlignment="CENTER" textOverrun="CLIP" />
                </children>
             </HBox>
          </children>

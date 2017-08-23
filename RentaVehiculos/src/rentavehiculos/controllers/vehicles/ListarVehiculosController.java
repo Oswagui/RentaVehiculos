@@ -67,7 +67,12 @@ public class ListarVehiculosController implements Initializable{
     }
 
     @FXML
-    void modificarDisponibilidad(MouseEvent event) {
+    void modificarDisponibilidad(MouseEvent event) throws IOException {
+        Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
+        Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
+        Stage stage = (Stage) vehiculos.getScene().getWindow();
+        //stage.close(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ModificarDisponibilidadVehiculo.fxml");
 
     }
     public void setApp(Stage app) {
