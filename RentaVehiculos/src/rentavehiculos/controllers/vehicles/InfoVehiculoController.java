@@ -7,6 +7,7 @@ package rentavehiculos.controllers.vehicles;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,7 +67,10 @@ public class InfoVehiculoController implements Initializable{
     }
 
     @FXML
-    void atras(MouseEvent event) {
+    void atras(MouseEvent event) throws IOException {
+        Stage stage = (Stage) matricula.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ListarVehiculos.fxml");
         
     }
 

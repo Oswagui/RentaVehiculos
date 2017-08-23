@@ -69,10 +69,12 @@ public class ConsultarVehiculoController implements Initializable{
     private TextField pDesde;
     
     @FXML
-    private TextField pHasta;   
+    private TextField pHasta;  
+    
 
     @FXML
     void atras(MouseEvent event) {
+        
 
     }
 
@@ -232,8 +234,7 @@ public class ConsultarVehiculoController implements Initializable{
             }                    
             Pruebas.getInstancia().setListaVehiculos(listaVehiculos);
             
-            Stage stage = (Stage) matricula.getScene().getWindow();
-            //stage.close(); //Quitar Comentario para cerrar la ventana actual
+            cerrarVentana();
             Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ListarVehiculos.fxml");
             
             
@@ -291,6 +292,9 @@ public class ConsultarVehiculoController implements Initializable{
         color.getSelectionModel().select("");
     }
     
-    
+    public void cerrarVentana(){
+        Stage stage = (Stage) matricula.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
+    }
     
 }

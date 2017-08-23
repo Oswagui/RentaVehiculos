@@ -6,6 +6,7 @@
 package rentavehiculos.controllers.vehicles;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
@@ -46,7 +47,9 @@ public class ModificarDisponibilidadVehiculoController implements Initializable{
     }
     
     @FXML
-    public void atras(MouseEvent event){
+    public void atras(MouseEvent event) throws IOException{
+        cerrarVentana(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
         
     }
     
@@ -104,6 +107,7 @@ public class ModificarDisponibilidadVehiculoController implements Initializable{
     
     @FXML
     public void salir(MouseEvent event){
+        cerrarVentana();
         
     }
 
@@ -117,6 +121,11 @@ public class ModificarDisponibilidadVehiculoController implements Initializable{
         Image fotoVehiculo=new Image(new ByteArrayInputStream(vehicleToShow.getFoto()));
         imagen.setImage(fotoVehiculo);
 
+    }
+    
+    public void cerrarVentana(){
+        Stage stage = (Stage) matricula.getScene().getWindow();
+        stage.close();
     }
     
 }
