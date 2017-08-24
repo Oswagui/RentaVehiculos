@@ -82,11 +82,11 @@ delimiter ;
 drop procedure if exists insertarCliente;
 delimiter |
 
-CREATE PROCEDURE insertarCliente (IN id_clienteI INT, IN ruc_ciI TINYINT, IN identificacionI VARCHAR(50), IN nombreI VARCHAR(50), 
+CREATE PROCEDURE insertarCliente (IN ruc_ciI TINYINT, IN identificacionI VARCHAR(50), IN nombreI VARCHAR(50), 
 IN telefonoI VARCHAR(20), IN direccionI VARCHAR(256), IN rSocialI VARCHAR(256))
 BEGIN
 	INSERT INTO cliente VALUES
-	(id_clienteI, ruc_ciI, idenificacionI, nombreI, telefonoI, direccionI, razon_socialI);
+	(ruc_ciI, idenificacionI, nombreI, telefonoI, direccionI, razon_socialI);
 END |
 
 delimiter ;
