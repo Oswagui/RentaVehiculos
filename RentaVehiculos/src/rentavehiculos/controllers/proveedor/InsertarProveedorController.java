@@ -1,4 +1,4 @@
-package rentavehiculos.controllers.empleados;
+package rentavehiculos.controllers.proveedor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,23 +18,26 @@ import rentavehiculos.entities.Cliente;
  *
  * @author Uchiha ClanPc
  */
-public class InsertarReparacionController implements Initializable{
+public class InsertarProveedorController implements Initializable{
     private Stage app;
     
     @FXML
-    private TextField cedula;
+    private TextField nombre;
     
     @FXML
-    private TextField vehiculo; //placa
-
-    @FXML
-    private TextField costo;
-
-    @FXML
-    private TextField fecha;
+    private TextField direccion; 
     
     @FXML
-    private TextField descripcion;
+    private TextField pais;
+
+    @FXML
+    private TextField ciudad;
+    
+    @FXML
+    private TextField telefono; 
+    
+    @FXML
+    private TextField e_mail;
     
     
     
@@ -45,7 +48,7 @@ public class InsertarReparacionController implements Initializable{
     
     @FXML
     public void atras(MouseEvent event) throws IOException{
-        Stage stage = (Stage) costo.getScene().getWindow();
+        Stage stage = (Stage) telefono.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
         //Pruebas.getInstancia().mostrarAnyVentana("");
         
@@ -56,50 +59,52 @@ public class InsertarReparacionController implements Initializable{
     public void agregar(MouseEvent Event) throws IOException, SQLException{
         
         Conexion conn = new Conexion();
-        String cedulaG=cedula.getText();
-	String vehiculoG=vehiculo.getText();
-	String costoG=costo.getText();
-	String fechaG=fecha.getText();
-	String descripcionG=descripcion.getText();
+        String nombreG=nombre.getText();
+	String direccionG=direccion.getText();
+        String paisG=pais.getText();
+	String ciudadG=ciudad.getText();
+	String telefonoG=telefono.getText();
+	String e_mailG=e_mail.getText();
 
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?)}");
+                    prepareCall("{call  insertarCliente(?,?,?,?,?,?)}");
 
-            if(!cedulaG.equals("")){
-                    cst.setString(1, cedulaG);
+            if(!nombreG.equals("")){
+                    cst.setString(1, nombreG);
             }else{
                cst.setNull(1,java.sql.Types.VARCHAR);
             }
 	    
-	    if(!vehiculoG.equals("")){
-                    cst.setString(2, vehiculoG);
+	    if(!direccionG.equals("")){
+                    cst.setString(2, direccionG);
             }else{
                cst.setNull(2,java.sql.Types.VARCHAR);
             }
-
-	    if(!costoG.equals("")){
-                    cst.setFloat(3, Float.parseFloat(costoG));
-            }else{
-               cst.setNull(3,java.sql.Types.FLOAT);
-            }
-	    if(!fechaG.equals("")){
-                try {
-                    //validar fecha formato dd/mm/yyyy
-                    cst.setTimestamp(4, stringToTimestamp(fechaG));
-                } catch (ParseException ex) {
-                    System.out.println("Error al parseo de fecha");
-                }
-            }else{
-                    cst.setNull(4,java.sql.Types.TIMESTAMP);
-            }
-	    
             
-	    if(!descripcionG.equals("")){
-                    cst.setString(5, descripcionG);
+	    if(!paisG.equals("")){
+                    cst.setString(3, paisG);
+            }else{
+               cst.setNull(3,java.sql.Types.VARCHAR);
+            }
+
+	    if(!ciudadG.equals("")){
+                    cst.setString(4, ciudadG);
+            }else{
+               cst.setNull(4,java.sql.Types.VARCHAR);
+            }
+
+	    if(!telefonoG.equals("")){
+                    cst.setString(5, telefonoG);
             }else{
                cst.setNull(5,java.sql.Types.VARCHAR);
+            }
+
+	    if(!e_mailG.equals("")){
+                    cst.setString(6, e_mailG);
+            }else{
+               cst.setNull(6,java.sql.Types.VARCHAR);
             }
             
             cst.execute();                   
@@ -137,23 +142,14 @@ public class InsertarReparacionController implements Initializable{
     
     public void vaciarCampos(){ 
         
-        cedula.setText("");
-        vehiculo.setText("");
-	costo.setText("");
-	fecha.setText("");
-        observaciones.setText("");
+        nombre.setText("");
+        direccion.setText("");
+        pais.setText("");
+        ciudad.setText("");
+        telefono.setText("");
+        e_mail.setText("");
 
 
-    }
-
-    public static Timestamp stringToTimestamp(String fecha) throws ParseException {
-    
-      DateFormat formatoFecha;
-      formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-      Date date = formatoFecha.parse(fecha);
-      java.sql.Timestamp fechaTS = new Timestamp(date.getTime());
-      return fechaTS;
-      
     }
     
     

@@ -39,7 +39,7 @@ public class InsertarCuidadoController implements Initializable{
     
     @FXML
     public void atras(MouseEvent event) throws IOException{
-        Stage stage = (Stage) precio.getScene().getWindow();
+        Stage stage = (Stage) cedula.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
         //Pruebas.getInstancia().mostrarAnyVentana("");
         

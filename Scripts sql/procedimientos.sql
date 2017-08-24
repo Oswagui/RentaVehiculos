@@ -185,11 +185,11 @@ delimiter ;
 drop procedure if exists insertarProveedor;
 delimiter |
 
-CREATE PROCEDURE insertarProveedor(IN id_proveedorI INT, IN nombreI VARCHAR(80), IN direccionI VARCHAR(256), IN paisI VARCHAR(60), 
-IN ciudadI VARCHAR(60), IN telefonoI VARCHAR(20), IN rSocialI VARCHAR(256))
+CREATE PROCEDURE insertarProveedor(IN nombreI VARCHAR(80), IN direccionI VARCHAR(256), IN paisI VARCHAR(60), 
+IN ciudadI VARCHAR(60), IN telefonoI VARCHAR(20), IN e_mailI VARCHAR(256))
 BEGIN
-	INSERT INTO cliente VALUES
-	(id_proveedorI, nombreI, direccionI, paisI, ciudadI, telefonoI, rSocialI);
+	INSERT INTO cliente(nombre, direccion, paisI, ciudad, telefono, e_mail) VALUES
+	(nombreI, direccionI, paisI, ciudadI, telefonoI, e_mailI);
 END |
 
 delimiter ;
