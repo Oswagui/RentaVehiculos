@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rentavehiculos.cotrollers.empleados;
+package rentavehiculos.controllers.empleados;
 
 import java.io.IOException;
 import java.net.URL;
@@ -106,7 +106,7 @@ public class InsertarEmpleadosController implements Initializable{
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    prepareCall("{call  insertarEmpleado(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
             if(!nombreG.equals("")){
                     cst.setString(1, nombreG);
