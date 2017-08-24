@@ -96,12 +96,12 @@ drop procedure if exists insertarVehiculo;
 delimiter |
 
 CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI VARCHAR(50), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
-IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN precioI FLOAT)
+IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN capacidadI INT, IN precioI FLOAT)
 BEGIN
-	INSERT INTO vehiculo(matricula, tipo, marca, año, nombre_modelo, disponibilidad, color, precio) VALUES
-	(matriculaI, tipoI, marcaI, añoI, nombre_modeloI, 1, colorI, precioI);
+	INSERT INTO vehiculo(matricula, tipo, marca, año, nombre_modelo, disponibilidad, color, capacidad,precio) VALUES
+	(matriculaI, tipoI, marcaI, añoI, nombre_modeloI, 1, colorI, capacidad,precioI);
     UPDATE vehiculo
-    SET proveedor=provedoorI
+    SET proveedor=(SELECT p.id_proveedor FROM vehiculo v join proveedor p on v.proveedor=p.id_proveedor WHERE p.nombre=proveedorI)
     WHERE matricula=matriculaI;
 END |
 
@@ -320,6 +320,26 @@ begin
     set disponibilidad = 0
     where vehiculo.matricula=new.vehiculo;
 end|
+
+delimiter ;
+
+
+
+drop procedure if exists modificarVehiculo;
+delimiter |
+
+CREATE PROCEDURE modificarVehiculo (IN matriculaI VARCHAR(20), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
+IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN capacidadI INT, IN precioI FLOAT, IN imagenI LONGBLOB)
+BEGIN
+	UPDATE vehiculo
+    SET tipo=tipoI, marca=marcaI, año=añoI, nombre_modelo=nombre_modeloI, color=colorI, capacidad=capacidadI,precio=precioI, foto=imagenI
+	WHERE matricula=matriculaI;
+END |
+
+
+delimiter ;
+
+
 
 
 
