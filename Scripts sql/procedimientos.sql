@@ -95,11 +95,14 @@ delimiter ;
 drop procedure if exists insertarVehiculo;
 delimiter |
 
-CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI INT, IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
-IN añoI INT, IN nombre_modeloI VARCHAR(20), IN disponibilidadI TINYTEXT, IN colorI VARCHAR(256), IN precioI FLOAT)
+CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI VARCHAR(50), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
+IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN precioI FLOAT)
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(matriculaI, proveedorI, tipoI, marcaI, añoI, nombre_modeloI, disponibilidadI, colorI, precioI);
+	INSERT INTO vehiculo(matricula, tipo, marca, año, nombre_modelo, disponibilidad, color, precio) VALUES
+	(matriculaI, tipoI, marcaI, añoI, nombre_modeloI, 1, colorI, precioI);
+    UPDATE vehiculo
+    SET proveedor=provedoorI
+    WHERE matricula=matriculaI;
 END |
 
 

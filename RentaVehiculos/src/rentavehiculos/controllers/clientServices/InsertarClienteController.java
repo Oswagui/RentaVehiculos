@@ -6,9 +6,12 @@
 package rentavehiculos.controllers.clientServices;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,12 +25,9 @@ import rentavehiculos.entities.Cliente;
  *
  * @author Uchiha ClanPc
  */
-public class InsertarClienteController {
+public class InsertarClienteController implements Initializable{
     private Stage app;
-    
-    @FXML
-    private TextField id_cliente;
-    
+     
     @FXML
     private ComboBox<String> ruc_ci;
     
@@ -61,7 +61,6 @@ public class InsertarClienteController {
     public void agregar(MouseEvent Event) throws IOException, SQLException{
         
         Conexion conn = new Conexion();
-        String id_clienteG=id_cliente.getText();
         String rucCiG=ruc_ci.getSelectionModel().getSelectedItem().toString();
         String identificacionG=identificacion.getText();
         String nombreG=nombre.getText();
@@ -72,50 +71,44 @@ public class InsertarClienteController {
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?,?,?,?,?)}");
-            
-            if(!id_clienteG.equals("")){
-                cst.setInt(1, Integer.parseInt(id_clienteG));
-            }else{
-                cst.setInt(1,Integer.parseInt(identificacionG)-935913);
-            }
-            
+                    prepareCall("{call  insertarCliente(?,?,?,?,?,?)}");
+
             if(rucCiG.equals("Corporación")){
-               cst.setBoolean(2,Boolean.TRUE);
+               cst.setBoolean(1,Boolean.TRUE);
             }else if(rucCiG.equals("Persona")){
-               cst.setBoolean(2,Boolean.FALSE);
+               cst.setBoolean(1,Boolean.FALSE);
             }else{
-               cst.setNull(2,java.sql.Types.TINYINT);
+               cst.setNull(1,java.sql.Types.TINYINT);
             }
             
             if(!identificacionG.equals("")){
-                cst.setString(3, identificacionG);
+                cst.setString(2, identificacionG);
+            }else{
+                cst.setNull(2,java.sql.Types.VARCHAR);
+            }
+            
+            if(!nombreG.equals("")){
+                cst.setString(3, nombreG);
             }else{
                 cst.setNull(3,java.sql.Types.VARCHAR);
             }
             
-            if(!nombreG.equals("")){
-                cst.setString(4, nombreG);
+            if(!telefonoG.equals("")){
+                cst.setString(4, telefonoG);
             }else{
                 cst.setNull(4,java.sql.Types.VARCHAR);
             }
             
-            if(!telefonoG.equals("")){
-                cst.setString(5, telefonoG);
+            if(!direccionG.equals("")){
+                cst.setString(5, direccionG);
             }else{
                 cst.setNull(5,java.sql.Types.VARCHAR);
             }
             
-            if(!direccionG.equals("")){
-                cst.setString(6, nombreG);
+            if(!rSocialG.equals("")){
+                cst.setString(6, rSocialG);
             }else{
                 cst.setNull(6,java.sql.Types.VARCHAR);
-            }
-            
-            if(!rSocialG.equals("")){
-                cst.setString(7, rSocialG);
-            }else{
-                cst.setNull(7,java.sql.Types.VARCHAR);
             }
             cst.execute();                   
             
@@ -145,7 +138,7 @@ public class InsertarClienteController {
     }
     
     public void vaciarCampos(){
-        id_cliente.setText("");
+        
         ruc_ci.getSelectionModel().select("");
         identificacion.setText("");
         nombre.setText("");
@@ -153,5 +146,10 @@ public class InsertarClienteController {
         direccion.setText("");
         rSocial.setText("");
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       
     }
 }
