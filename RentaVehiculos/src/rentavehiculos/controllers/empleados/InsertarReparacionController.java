@@ -18,7 +18,7 @@ import rentavehiculos.entities.Cliente;
  *
  * @author Uchiha ClanPc
  */
-public class InsertarCuidadoController implements Initializable{
+public class InsertarReparacionController implements Initializable{
     private Stage app;
     
     @FXML
@@ -26,9 +26,15 @@ public class InsertarCuidadoController implements Initializable{
     
     @FXML
     private TextField vehiculo; //placa
+
+    @FXML
+    private TextField costo;
+
+    @FXML
+    private TextField fecha;
     
     @FXML
-    private TextField observaciones;
+    private TextField descripcion;
     
     
     
@@ -52,7 +58,9 @@ public class InsertarCuidadoController implements Initializable{
         Conexion conn = new Conexion();
         String cedulaG=cedula.getText();
 	String vehiculoG=vehiculo.getText();
-	String observacionesG=observaciones.getText();
+	String costoG=costo.getText();
+	String fechaG=fecha.getText();
+	String descripcionG=descripcion.getText();
 
         
         try{
@@ -70,11 +78,28 @@ public class InsertarCuidadoController implements Initializable{
             }else{
                cst.setNull(2,java.sql.Types.VARCHAR);
             }
-            
-	    if(!observacionesG.equals("")){
-                    cst.setString(3, observacionesG);
+
+	    if(!costoG.equals("")){
+                    cst.setFloat(3, Float.parseFloat(costoG));
             }else{
-               cst.setNull(3,java.sql.Types.VARCHAR);
+               cst.setNull(3,java.sql.Types.FLOAT);
+            }
+	    if(!fechaG.equals("")){
+                try {
+                    //validar fecha formato dd/mm/yyyy
+                    cst.setTimestamp(4, stringToTimestamp(fechaG));
+                } catch (ParseException ex) {
+                    System.out.println("Error al parseo de fecha");
+                }
+            }else{
+                    cst.setNull(4,java.sql.Types.TIMESTAMP);
+            }
+	    
+            
+	    if(!descripcionG.equals("")){
+                    cst.setString(5, descripcionG);
+            }else{
+               cst.setNull(5,java.sql.Types.VARCHAR);
             }
             
             cst.execute();                   
@@ -114,9 +139,21 @@ public class InsertarCuidadoController implements Initializable{
         
         cedula.setText("");
         vehiculo.setText("");
+	costo.setText("");
+	fecha.setText("");
         observaciones.setText("");
 
 
+    }
+
+    public static Timestamp stringToTimestamp(String fecha) throws ParseException {
+    
+      DateFormat formatoFecha;
+      formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+      Date date = formatoFecha.parse(fecha);
+      java.sql.Timestamp fechaTS = new Timestamp(date.getTime());
+      return fechaTS;
+      
     }
     
     

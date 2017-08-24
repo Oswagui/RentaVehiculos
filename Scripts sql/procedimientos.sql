@@ -171,11 +171,11 @@ delimiter ;
 drop procedure if exists insertarReparacion;
 delimiter |
 
-CREATE PROCEDURE insertarReparacion(IN idReparacionI INT,IN empleadoI INT, IN vehiculoI VARCHAR(20), IN costoI FLOAT, 
+CREATE PROCEDURE insertarReparacion(IN cedulaI VARCHAR(20), IN vehiculoI VARCHAR(20), IN costoI FLOAT, 
 IN fecha_reparacionI DATETIME, IN descripcionI VARCHAR(512))
 BEGIN
 	INSERT INTO vehiculo VALUES
-	(idReparacionI,empladoI, vehiculoI, costoI, fecha_reparacionI, descripcionI);
+	((SELECT id_empleado FROM empleado WHERE cedula=cedulaI), vehiculoI, costoI, fecha_reparacionI, descripcionI);
 END |
 
 delimiter ;
