@@ -97,6 +97,12 @@ public class LoginController implements Initializable {
                 if (usuarioSistema.getPuesto().equalsIgnoreCase("Adminin of DB")) {
                    // this.cargarAsistente(event, idRes);
                     System.out.println("ADMIN");
+                    
+                    try {
+                        ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/adminServices/SubmenuAdmin.fxml");
+                    } catch (IOException ex) {
+                        System.out.println("error");
+                    }
                 }
                 else if (usuarioSistema.getPuesto().equalsIgnoreCase("Servicio al Cliente")) {
                     //this.cargarCliente(event);

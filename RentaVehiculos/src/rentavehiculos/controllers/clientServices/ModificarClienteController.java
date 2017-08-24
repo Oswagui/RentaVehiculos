@@ -8,9 +8,15 @@ package rentavehiculos.controllers.clientServices;
 import rentavehiculos.controllers.vehicles.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +31,7 @@ import rentavehiculos.Pruebas;
 import rentavehiculos.classes.alerts.GeneralAlert;
 import rentavehiculos.classes.alerts.InfoAlert;
 import rentavehiculos.classes.alerts.WarningAlert;
+import rentavehiculos.classes.connection.Conexion;
 import rentavehiculos.classes.validaciones.Validaciones;
 import rentavehiculos.entities.Cliente;
 import rentavehiculos.entities.Vehiculo;
@@ -62,8 +69,7 @@ public class ModificarClienteController implements Initializable{
     void atras(MouseEvent event) throws IOException {
         Stage stage = (Stage) identificacionIC.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
-        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/ListarClientes.fxml");
-        
+        Pruebas.getInstancia().getSubmenu().show();
     }
     
     
@@ -76,11 +82,51 @@ public class ModificarClienteController implements Initializable{
         String direccionG =this.direccionIC.getText();
         String razonSocialG = this.razonSocialIC.getText();
         
-        if(!this.validarEnteroPositivo(telefonoG, -1, -1)){
+        if(identificacionG.equals("") || tipoG.equals("") || nombreG.equals("")
+           || telefonoG.equals("") || direccionG.equals("") || razonSocialG.equals("")){
+            this.mostrarInfoNoExito("Campos vacios");
+        }else if(!this.validarEnteroPositivo(telefonoG, -1, -1)){
             this.mostrarInfoNoExito("Telefono ingresado no valido,no debe contener letras.");
         }else{
             System.out.println("Guardando");
+            CallableStatement cst=null;
+            Conexion conn = new Conexion();
+            try{
+                
+                cst = conn.getConnection().prepareCall("{call modificarCliente(?,?,?,?,?)}");
+                cst.setString(1,identificacionG);
+                cst.setString(2, nombreG);
+                cst.setString(3, telefonoG);
+                cst.setString(4,direccionG);
+                cst.setString(5, razonSocialG);
+                
+               
+                cst.execute();
+                
+                this.mostrarInfoExito();
+                
+                
+                //stage.close(); //Quitar Comentario para cerrar la ventana actual
+                //Pruebas.getInstancia().mostrarAnyVentana("");  //menu principal
+            } 
+            catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                this.mostrarInfoNoExito("Np se puedo actualizar");
+            } 
+            finally {
+                try {
+                    conn.desconexion();
+                    if(cst!=null){
+                       cst.close();
+                    }
+                }
+                catch(SQLException e){
+
+                }
+
+            }
             //Programa Funcionalidad de Guardar
+        
         }
     }
     @Override

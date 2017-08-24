@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.adminServices.SubmenuAdminController">
+   <children>
+      <Button fx:id="ingresos" layoutX="407.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#ingresos" />
+      <Button fx:id="modificaciones" layoutX="407.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#modificaciones" />
+      <Button fx:id="eliminaciones" layoutX="407.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#eliminaciones" />
+      <Button fx:id="cerrarSesion" layoutX="358.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#cerrarSesion" />
+      <ComboBox fx:id="opcion" layoutX="850.0" layoutY="369.0" prefWidth="150.0" />
+   </children>
+</Pane>
