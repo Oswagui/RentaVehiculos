@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import rentavehiculos.Pruebas;
 import rentavehiculos.classes.alerts.GeneralAlert;
 import rentavehiculos.classes.alerts.InfoAlert;
 import rentavehiculos.classes.alerts.WarningAlert;
@@ -120,9 +121,10 @@ public class LoginController implements Initializable {
                 });
                 ventana.setResizable(false);
                 ventana.setMaximized(false);
-                ventana.showAndWait();
-                stageLogin.show();
-                this.limpiarCampos();
+                Pruebas.getInstancia().getLogin().hide();
+                ventana.show();
+                Pruebas.getInstancia().setSubmenu(ventana);
+                this.password.setText("");
             }
             else {
                 this.limpiarCampos();

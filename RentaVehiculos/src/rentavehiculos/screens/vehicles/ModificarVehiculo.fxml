@@ -8,11 +8,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.vehicles.InfoVehiculoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.vehicles.ModificarVehiculoController">
    <top>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -50,12 +51,12 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="matricula" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="matricula" disable="true" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
                   <Label text="Proveedor" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="proveedor" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="proveedor" disable="true" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Tipo" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -64,21 +65,20 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="tipo" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Imagen" GridPane.rowIndex="10">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
                   <ImageView fx:id="imagen" fitHeight="160.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <TextField fx:id="marca" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="marca" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Año" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="año" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="modelo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="disponibilidad" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="año" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="modelo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="disponibilidad" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Modelo" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -105,8 +105,9 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="capacidad" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="precio" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="capacidad" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="precio" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="tipo" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
@@ -115,10 +116,25 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="56.0" prefWidth="595.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onMouseClicked="#atras" prefHeight="31.0" prefWidth="64.0" text="Atrás">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font></Button>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button alignment="BASELINE_CENTER" layoutX="469.0" mnemonicParsing="false" onMouseClicked="#atras" prefHeight="31.0" prefWidth="89.0" text="Cancelar">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_CENTER" layoutX="283.0" mnemonicParsing="false" onMouseClicked="#guardar" prefHeight="31.0" prefWidth="121.0" text="Guardar">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_CENTER" layoutX="50.0" mnemonicParsing="false" onMouseClicked="#seleccionarImagen" prefHeight="31.0" prefWidth="161.0" text="Seleccionar Imagen">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
          </children>
       </VBox>
    </bottom>

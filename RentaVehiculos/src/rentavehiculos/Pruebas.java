@@ -8,7 +8,9 @@ package rentavehiculos;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import rentavehiculos.creators.AnyCreator;
 import rentavehiculos.creators.ConsultarClienteCreator;
 import rentavehiculos.creators.InfoClienteCreator;
@@ -29,6 +31,9 @@ public class Pruebas extends Application {
     private static Pruebas instancia;
     private static Cliente clienteAMostrar;
     private static Vehiculo vehiculoAMostrar;
+    private static Stage login = null;
+    private static Stage submenu = null;
+    private static Stage funcionalidad = null;
     
     public Pruebas(){
         instancia=this;
@@ -39,8 +44,10 @@ public class Pruebas extends Application {
         
         //stage = ConsultarClienteCreator.consultarClienteCreator();
         //stage=AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/SubmenuAtencion.fxml");
-        stage=AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
-        stage.setTitle("RentaVehiculo 2.0"); 
+        //stage=AnyCreator.anyCreator("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
+        stage = AnyCreator.anyCreator("src/rentavehiculos/screens/login/Login.fxml");
+        stage.setTitle("RentaVehiculo 2.0");
+        Pruebas.getInstancia().setLogin(stage);
         stage.show();
         
     }
@@ -90,6 +97,12 @@ public class Pruebas extends Application {
         Stage s=AnyCreator.anyCreator(xmlSource);
         s.setResizable(false);
         s.setMaximized(false);
+        s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("No puede cerrar la ventana asi");
+                event.consume();}
+        });
         s.setTitle("RentaVehiculo 2.0"); 
         s.show();
         
@@ -109,6 +122,30 @@ public class Pruebas extends Application {
 
     public void setVehiculoAMostrar(Vehiculo v) {
         vehiculoAMostrar = v;
+    }
+
+    public Stage getLogin() {
+        return login;
+    }
+
+    public void setLogin(Stage login) {
+        Pruebas.login = login;
+    }
+
+    public Stage getSubmenu() {
+        return submenu;
+    }
+
+    public void setSubmenu(Stage submenu) {
+        Pruebas.submenu = submenu;
+    }
+
+    public Stage getFuncionalidad() {
+        return funcionalidad;
+    }
+
+    public void setFuncionalidad(Stage funcionalidad) {
+        Pruebas.funcionalidad = funcionalidad;
     }
    
 }

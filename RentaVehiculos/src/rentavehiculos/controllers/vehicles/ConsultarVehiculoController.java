@@ -23,6 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import rentavehiculos.Pruebas;
+import rentavehiculos.classes.alerts.GeneralAlert;
+import rentavehiculos.classes.alerts.WarningAlert;
 import rentavehiculos.classes.connection.Conexion;
 import rentavehiculos.classes.validaciones.Validaciones;
 import rentavehiculos.entities.Proveedor;
@@ -82,6 +84,8 @@ public class ConsultarVehiculoController implements Initializable{
     @FXML
     void atras(MouseEvent event) {
        Stage stage = (Stage) aDesde.getScene().getWindow();
+       Pruebas.getInstancia().setFuncionalidad(null);
+       Pruebas.getInstancia().getSubmenu().show();
        stage.close();
 
     }
@@ -107,13 +111,13 @@ public class ConsultarVehiculoController implements Initializable{
         CallableStatement cst=null;
         
         if(!this.validarMatricula(matriculaG)){
-            System.out.println("Matricula no sigue formato correcto");
+            this.mostrarInfoNoExito("El formato de la matricula es incorrecto.\n Ej-Correcto: ABC-1234");
         }else if(!this.validarAños(adesdeG, ahastaG)){
-            System.out.println("Error años no enteros");
+            this.mostrarInfoNoExito("Los valores del rango de años deben ser enteros y validos");
         }else if(!this.validarRangoCapacidad(cdesdeG, chastaG)){
-            System.out.println("Error capacidades no enteros");
+            this.mostrarInfoNoExito("Los valores del rango de capacidad deben ser enteros y validos");
         }else if(!this.validarRangoPrecios(pdesdeG, phastaG)){
-            System.out.println("Error precios no enteros");
+            this.mostrarInfoNoExito("Los valores del rango de precios deben ser numericos y validos");
         }else{
             try{
                 cst = conn.getConnection().
@@ -251,7 +255,7 @@ public class ConsultarVehiculoController implements Initializable{
                 }                    
                 Pruebas.getInstancia().setListaVehiculos(listaVehiculos);
                 System.out.println(listaVehiculos.size());
-                if(listaVehiculos.size()== 0){ System.out.println("No coincidencias");}
+                if(listaVehiculos.isEmpty()){ this.mostrarInfoNoExito("No se encontraron coincidencias con los parametros de busqueda utilizados.");}
                 else{
                     cerrarVentana();
                     Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ListarVehiculos.fxml");
@@ -390,4 +394,15 @@ public class ConsultarVehiculoController implements Initializable{
                 && (encajaPrecioMax.matches() || precioMax.equals(""));
     }
     
+    private void mostrarInfoNoExito(String info) {
+        
+        GeneralAlert g;
+        
+        g = new WarningAlert();
+        
+        g.setMensaje(info);
+        
+        g.showAlert();
+        
+    }
 }

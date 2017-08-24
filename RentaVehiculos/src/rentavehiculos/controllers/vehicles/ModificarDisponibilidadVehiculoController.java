@@ -20,6 +20,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import rentavehiculos.Pruebas;
+import rentavehiculos.classes.alerts.GeneralAlert;
+import rentavehiculos.classes.alerts.InfoAlert;
 import rentavehiculos.classes.connection.Conexion;
 import rentavehiculos.entities.Cliente;
 import rentavehiculos.entities.Vehiculo;
@@ -102,6 +104,7 @@ public class ModificarDisponibilidadVehiculoController implements Initializable{
             }
             
         }
+        this.mostrarInfoExito();
         
     }
     
@@ -126,6 +129,20 @@ public class ModificarDisponibilidadVehiculoController implements Initializable{
     public void cerrarVentana(){
         Stage stage = (Stage) matricula.getScene().getWindow();
         stage.close();
+        Pruebas.getInstancia().setFuncionalidad(null);
+        Pruebas.getInstancia().getSubmenu().show();
+    }
+    
+    private void mostrarInfoExito() {
+        
+        GeneralAlert g;
+                
+        g = new InfoAlert();
+
+        g.setMensaje("Modificacion exitosa");
+
+        g.showAlert();
+        
     }
     
 }

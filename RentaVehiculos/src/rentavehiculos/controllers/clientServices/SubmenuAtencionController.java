@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import rentavehiculos.Pruebas;
 import rentavehiculos.creators.AnyCreator;
 
 /**
@@ -117,7 +118,10 @@ public class SubmenuAtencionController implements Initializable {
     
     public void cerrarSesion(){
        Stage stageSubmenu = (Stage)((Node)this.fondo).getScene().getWindow();
+       Pruebas.getInstancia().setSubmenu(null);
+       Pruebas.getInstancia().getLogin().show();
        stageSubmenu.close();
+       
     }
     
     public void consultarVehiculo(){
@@ -135,11 +139,38 @@ public class SubmenuAtencionController implements Initializable {
                 System.out.println("No puede cerrar la ventana asi");
                 event.consume();}
         });
+        
+        Pruebas.getInstancia().getSubmenu().hide();
         ventana.setResizable(false);
         ventana.setMaximized(false);
-        ventana.showAndWait();
-        stageSubmenu.show();
+        Pruebas.getInstancia().setFuncionalidad(ventana);
+        ventana.show();
+        
     }
+    public void consultarCliente(){
+        Stage ventana = null;
+        try {
+            ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/ConsultarCliente.fxml");
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+        Stage stageSubmenu = (Stage)((Node)this.fondo).getScene().getWindow();
+        stageSubmenu.hide();
+        ventana.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("No puede cerrar la ventana asi");
+                event.consume();}
+        });
+        
+        Pruebas.getInstancia().getSubmenu().hide();
+        ventana.setResizable(false);
+        ventana.setMaximized(false);
+        Pruebas.getInstancia().setFuncionalidad(ventana);
+        ventana.show();
+        
+    }
+    
     private class estimular implements EventHandler<MouseEvent> {
         Button btn;
         boolean estimulo;

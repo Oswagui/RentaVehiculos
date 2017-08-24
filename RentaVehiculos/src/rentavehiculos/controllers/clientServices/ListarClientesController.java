@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +41,11 @@ public class ListarClientesController implements Initializable{
     
     ObservableList<Cliente> clientesOL;
     
+    @FXML
+    private Button showInfoButton;
+    
+    @FXML
+    private Button modifyButton;
     
     public ListarClientesController(){
         
@@ -53,22 +59,50 @@ public class ListarClientesController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         identificacionLC.setCellValueFactory(new PropertyValueFactory<Cliente,String>("identificacion"));
         tipoLC.setCellValueFactory(new PropertyValueFactory<Cliente,String>("tipo"));
+        this.showInfoButton.setDisable(true);
+        this.modifyButton.setDisable(true);
         
     }
     
     @FXML
     private void cargarLista(MouseEvent Event){
         clientesOL=Pruebas.getInstancia().getListaClientes();
-        clientes.setItems(clientesOL);     
+        clientes.setItems(clientesOL);
+        this.showInfoButton.setDisable(false);
+        this.modifyButton.setDisable(false);
     }
     
     @FXML
     private void verCliente(MouseEvent Event) throws IOException{
         Cliente clientToShow=clientes.getSelectionModel().getSelectedItem();
+        if (clientToShow == null){
+            System.out.println("No ha seleccionado cliente");
+            return;
+        }
         Pruebas.getInstancia().setClienteAMostrar(clientToShow);
         Stage stage = (Stage) clientes.getScene().getWindow();
-        //stage.close(); //Quitar Comentario para cerrar la ventana actual
-        Pruebas.getInstancia().mostrarNuevaVentana2();
+        stage.close(); 
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/InfoCliente.fxml");
+    
+    }
+    
+     @FXML
+    void volver(MouseEvent event) throws IOException {
+        cerrarVentana();
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/ConsultarCliente.fxml");
+
+    }
+
+    @FXML
+    void salir(MouseEvent event) {
+        cerrarVentana();
+        Pruebas.getInstancia().setFuncionalidad(null);
+        Pruebas.getInstancia().getSubmenu().show();
+
+    }
+    public void cerrarVentana(){
+        Stage stage = (Stage) clientes.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
     }
     
     
