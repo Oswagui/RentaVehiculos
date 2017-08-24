@@ -66,13 +66,23 @@ public class ListarClientesController implements Initializable{
     private void verCliente(MouseEvent Event) throws IOException{
         Cliente clientToShow=clientes.getSelectionModel().getSelectedItem();
         Pruebas.getInstancia().setClienteAMostrar(clientToShow);
-        Stage stage = (Stage) clientes.getScene().getWindow();
-        //stage.close(); //Quitar Comentario para cerrar la ventana actual
+        cerrarVentana();
         Pruebas.getInstancia().mostrarNuevaVentana2();
     }
     
+    @FXML
+    private void volver(MouseEvent Event) throws IOException{
+        cerrarVentana();
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ConsultarVehiculo.fxml");
+    }
     
+    @FXML
+    private void salir(MouseEvent Event){
+        cerrarVentana();
+    }
     
-    
-    
+    public void cerrarVentana(){
+        Stage stage = (Stage) clientes.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual      
+    }
 }

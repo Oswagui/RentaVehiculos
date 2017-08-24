@@ -286,11 +286,36 @@ end|
 delimiter ;
 
 
+drop procedure if exists rentar;
+
+delimiter |
+CREATE PROCEDURE rentar(IN numero_diasI INT, IN fecha_salidaI DATETIME, IN kilometraje_salidaI INT, 
+IN nivel_gasolina_salidaI INT, IN placaVehiculoI VARCHAR(10), IN cedulaClienteI VARCHAR(20), IN valor_pagoI FLOAT)
+BEGIN
+	INSERT INTO alquilervehiculo(numero_dias, fecha_salida, vehiculo, kilometraje_salida, nivel_gasolina_salida)
+    VALUES(numero_diasI, fecha_salidaI, placaVehiculoI,kilometraje_salidaI, nivel_gasolinaI);
+    UPDATE alquilervehiculo
+    SET cliente=(SELECT id_cliente FROM cliente WHERE cedula=cedulaClienteI)
+    WHERE idAlquilerVehiculo=(SELECT max(idAlquilerVehiculo) FROM alquilervehiculo);
+    INSERT INTO tipopago(idAlquilerVehiculo, fecha_pago, valor_pago)
+    VALUES((SELECT max(idAlquilerVehiculo) FROM alquilervehiculo),fecha_salidaI, valor_pagoI);
+    
+END|
+
+delimiter ;
 
 
 
+drop trigger if EXISTS modificarDisponibilidadAfterAlquiler;
 
-
+delimiter |
+CREATE trigger modificarDisponibilidadAfterAlquiler after Insert on alquilerVehiculo
+for each row
+begin
+	update vehiculo
+    set disponibilidad = 0
+    where vehiculo.matricula=new.vehiculo;
+end|
 
 
 

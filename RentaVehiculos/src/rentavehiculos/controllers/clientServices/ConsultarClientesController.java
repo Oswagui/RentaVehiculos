@@ -168,10 +168,10 @@ public class ConsultarClientesController implements Initializable{
                 }
                 hayResultados=cst.getMoreResults();
             }                    
-            Pruebas.getInstancia().setListaClientes(listaClientes);
-            Stage stage = (Stage) identificacion.getScene().getWindow();
-            //stage.close(); //Quitar Comentario para cerrar la ventana actual
-            Pruebas.getInstancia().mostrarNuevaVentana();
+                Pruebas.getInstancia().setListaClientes(listaClientes);
+                Stage stage = (Stage) identificacion.getScene().getWindow();
+                stage.close(); //Quitar Comentario para cerrar la ventana actual
+                Pruebas.getInstancia().mostrarNuevaVentana();
             
         } 
         catch (SQLException ex) {

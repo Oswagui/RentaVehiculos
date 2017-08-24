@@ -5,6 +5,7 @@
  */
 package rentavehiculos.controllers.clientServices;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -46,7 +47,10 @@ public class InfoClienteController implements Initializable{
     }
     
     @FXML
-    public void atras(MouseEvent event){
+    public void atras(MouseEvent event) throws IOException{
+        Stage stage = (Stage) direccionIC.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarNuevaVentana();
         
     }
 
