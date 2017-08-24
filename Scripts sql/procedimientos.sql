@@ -116,7 +116,7 @@ CREATE PROCEDURE insertarEmpleado(IN nombreI VARCHAR(25), IN apellidoI VARCHAR(2
 IN contrasenaI VARCHAR(20), IN sueldoI FLOAT, IN fecha_inicioI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), 
 IN hora_entradaI TIME, IN hora_salidaI TIME, IN telefonoI VARCHAR(20), IN direccionI VARCHAR(256))
 BEGIN
-	INSERT INTO vehiculo(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
+	INSERT INTO Empleado(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
 	hora_salida, telefono, direccion) VALUES
 	(nombreI, apellidoI, cedulaI, usuarioI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
 	hora_salidaI, telefonoI, direccionI);
@@ -128,10 +128,10 @@ delimiter ;
 drop procedure if exists insertarDepartamento;
 delimiter |
 
-CREATE PROCEDURE insertarDepartamento(IN id_departamentoI INT, IN id_supervisorI INT, nombreI VARCHAR(50))
+CREATE PROCEDURE insertarDepartamento(nombreI VARCHAR(50))
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(departamentoI, id_supervisorI, nombreI);
+	INSERT INTO vehiculo(nombre) VALUES
+	(nombreI);
 END |
 
 delimiter ;
@@ -140,10 +140,10 @@ delimiter ;
 drop procedure if exists insertarCuidado;
 delimiter |
 
-CREATE PROCEDURE insertarCuidado(IN empleadoI INT, IN vehiculoI VARCHAR(20), observacionesI VARCHAR(2046))
+CREATE PROCEDURE insertarCuidado(IN cedulaI VARCHAR(20), IN vehiculoI VARCHAR(20), observacionesI VARCHAR(2046))
 BEGIN
 	INSERT INTO vehiculo VALUES
-	(empladoI, vehiculoI, observacionesI);
+	((SELECT id_empleado FROM empleado WHERE cedula=cedulaI), vehiculoI, observacionesI);
 END |
 
 delimiter ;
