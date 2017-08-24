@@ -54,6 +54,7 @@ public class SubmenuAtencionController implements Initializable {
     
     @FXML
     private Button cerrarSesion;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -147,6 +148,7 @@ public class SubmenuAtencionController implements Initializable {
         ventana.show();
         
     }
+
     public void consultarCliente(){
         Stage ventana = null;
         try {
@@ -168,7 +170,6 @@ public class SubmenuAtencionController implements Initializable {
         ventana.setMaximized(false);
         Pruebas.getInstancia().setFuncionalidad(ventana);
         ventana.show();
-        
     }
     
     private class estimular implements EventHandler<MouseEvent> {

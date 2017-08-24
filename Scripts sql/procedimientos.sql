@@ -63,6 +63,24 @@ end|
 delimiter ;
 
 
+drop procedure if exists consultarEmpleado;
+delimiter |
+
+CREATE PROCEDURE consultarEmpleado(IN nombreI VARCHAR(25), IN apellidoI VARCHAR(25), IN cedulaI VARCHAR(20), IN sueldoDesdeI FLOAT, 
+IN sueldoHastaI FLOAT, IN fecha_inicioDesdeI DATETIME, IN fecha_inicioHastaI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), 
+IN hora_entradaI TIME, IN hora_salidaI TIME)
+BEGIN
+	INSERT INTO Empleado(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
+	hora_salida, telefono, direccion) VALUES
+	(nombreI, apellidoI, cedulaI, usuarioI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
+	hora_salidaI, telefonoI, direccionI);
+END |
+
+delimiter ;
+
+
+
+
 drop procedure if exists getNombreProveedor;
 
 
@@ -82,11 +100,11 @@ delimiter ;
 drop procedure if exists insertarCliente;
 delimiter |
 
-CREATE PROCEDURE insertarCliente (IN id_clienteI INT, IN ruc_ciI TINYINT, IN identificacionI VARCHAR(50), IN nombreI VARCHAR(50), 
+CREATE PROCEDURE insertarCliente (IN ruc_ciI TINYINT, IN identificacionI VARCHAR(50), IN nombreI VARCHAR(50), 
 IN telefonoI VARCHAR(20), IN direccionI VARCHAR(256), IN rSocialI VARCHAR(256))
 BEGIN
 	INSERT INTO cliente VALUES
-	(id_clienteI, ruc_ciI, idenificacionI, nombreI, telefonoI, direccionI, razon_socialI);
+	(ruc_ciI, idenificacionI, nombreI, telefonoI, direccionI, razon_socialI);
 END |
 
 delimiter ;
@@ -95,11 +113,14 @@ delimiter ;
 drop procedure if exists insertarVehiculo;
 delimiter |
 
-CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI INT, IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
-IN añoI INT, IN nombre_modeloI VARCHAR(20), IN disponibilidadI TINYTEXT, IN colorI VARCHAR(256), IN precioI FLOAT)
+CREATE PROCEDURE insertarVehiculo (IN matriculaI VARCHAR(20), IN proveedorI VARCHAR(50), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
+IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN capacidadI INT, IN precioI FLOAT)
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(matriculaI, proveedorI, tipoI, marcaI, añoI, nombre_modeloI, disponibilidadI, colorI, precioI);
+	INSERT INTO vehiculo(matricula, tipo, marca, año, nombre_modelo, disponibilidad, color, capacidad,precio) VALUES
+	(matriculaI, tipoI, marcaI, añoI, nombre_modeloI, 1, colorI, capacidad,precioI);
+    UPDATE vehiculo
+    SET proveedor=(SELECT p.id_proveedor FROM vehiculo v join proveedor p on v.proveedor=p.id_proveedor WHERE p.nombre=proveedorI)
+    WHERE matricula=matriculaI;
 END |
 
 
@@ -109,13 +130,14 @@ delimiter ;
 drop procedure if exists insertarEmpleado;
 delimiter |
 
-CREATE PROCEDURE insertarEmpleado(IN id_empleadoI INT,  IN id_departamentoI INT, IN cedulaI VARCHAR(20), IN contrasenaI VARCHAR(20),
-IN sueldoI FLOAT, IN fecha_inicioI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), IN hora_entradaI TIME, 
-IN hora_salidaI TIME, IN telfonoI VARCHAR(20), IN direccionI VARCHAR(256), IN nombreI VARCHAR(25), IN apellido VARCHAR(25))
+CREATE PROCEDURE insertarEmpleado(IN nombreI VARCHAR(25), IN apellidoI VARCHAR(25), IN cedulaI VARCHAR(20), IN usuarioI VARCHAR(20),
+IN contrasenaI VARCHAR(20), IN sueldoI FLOAT, IN fecha_inicioI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), 
+IN hora_entradaI TIME, IN hora_salidaI TIME, IN telefonoI VARCHAR(20), IN direccionI VARCHAR(256))
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(id_empleadoI, id_departamentoI, cedulaI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
-	hora_salidaI, telfonoI, direccionI, nombreI, apellido);
+	INSERT INTO Empleado(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
+	hora_salida, telefono, direccion) VALUES
+	(nombreI, apellidoI, cedulaI, usuarioI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
+	hora_salidaI, telefonoI, direccionI);
 END |
 
 delimiter ;
@@ -124,10 +146,10 @@ delimiter ;
 drop procedure if exists insertarDepartamento;
 delimiter |
 
-CREATE PROCEDURE insertarDepartamento(IN id_departamentoI INT, IN id_supervisorI INT, nombreI VARCHAR(50))
+CREATE PROCEDURE insertarDepartamento(nombreI VARCHAR(50))
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(departamentoI, id_supervisorI, nombreI);
+	INSERT INTO vehiculo(nombre) VALUES
+	(nombreI);
 END |
 
 delimiter ;
@@ -136,10 +158,10 @@ delimiter ;
 drop procedure if exists insertarCuidado;
 delimiter |
 
-CREATE PROCEDURE insertarCuidado(IN empleadoI INT, IN vehiculoI VARCHAR(20), observacionesI VARCHAR(2046))
+CREATE PROCEDURE insertarCuidado(IN cedulaI VARCHAR(20), IN vehiculoI VARCHAR(20), observacionesI VARCHAR(2046))
 BEGIN
 	INSERT INTO vehiculo VALUES
-	(empladoI, vehiculoI, observacionesI);
+	((SELECT id_empleado FROM empleado WHERE cedula=cedulaI), vehiculoI, observacionesI);
 END |
 
 delimiter ;
@@ -286,9 +308,54 @@ end|
 delimiter ;
 
 
+drop procedure if exists rentar;
+
+delimiter |
+CREATE PROCEDURE rentar(IN numero_diasI INT, IN fecha_salidaI DATETIME, IN kilometraje_salidaI INT, 
+IN nivel_gasolina_salidaI INT, IN placaVehiculoI VARCHAR(10), IN cedulaClienteI VARCHAR(20), IN valor_pagoI FLOAT)
+BEGIN
+	INSERT INTO alquilervehiculo(numero_dias, fecha_salida, vehiculo, kilometraje_salida, nivel_gasolina_salida)
+    VALUES(numero_diasI, fecha_salidaI, placaVehiculoI,kilometraje_salidaI, nivel_gasolinaI);
+    UPDATE alquilervehiculo
+    SET cliente=(SELECT id_cliente FROM cliente WHERE cedula=cedulaClienteI)
+    WHERE idAlquilerVehiculo=(SELECT max(idAlquilerVehiculo) FROM alquilervehiculo);
+    INSERT INTO tipopago(idAlquilerVehiculo, fecha_pago, valor_pago)
+    VALUES((SELECT max(idAlquilerVehiculo) FROM alquilervehiculo),fecha_salidaI, valor_pagoI);
+    
+END|
+
+delimiter ;
 
 
 
+drop trigger if EXISTS modificarDisponibilidadAfterAlquiler;
+
+delimiter |
+CREATE trigger modificarDisponibilidadAfterAlquiler after Insert on alquilerVehiculo
+for each row
+begin
+	update vehiculo
+    set disponibilidad = 0
+    where vehiculo.matricula=new.vehiculo;
+end|
+
+delimiter ;
+
+
+
+drop procedure if exists modificarVehiculo;
+delimiter |
+
+CREATE PROCEDURE modificarVehiculo (IN matriculaI VARCHAR(20), IN tipoI VARCHAR(50), IN marcaI VARCHAR(50),
+IN añoI INT, IN nombre_modeloI VARCHAR(20), IN colorI VARCHAR(256), IN capacidadI INT, IN precioI FLOAT, IN imagenI LONGBLOB)
+BEGIN
+	UPDATE vehiculo
+    SET tipo=tipoI, marca=marcaI, año=añoI, nombre_modelo=nombre_modeloI, color=colorI, capacidad=capacidadI,precio=precioI, foto=imagenI
+	WHERE matricula=matriculaI;
+END |
+
+
+delimiter ;
 
 
 

@@ -102,11 +102,6 @@ public class ListarClientesController implements Initializable{
     }
     public void cerrarVentana(){
         Stage stage = (Stage) clientes.getScene().getWindow();
-        stage.close(); //Quitar Comentario para cerrar la ventana actual
+        stage.close(); //Quitar Comentario para cerrar la ventana actual      
     }
-    
-    
-    
-    
-    
 }

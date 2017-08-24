@@ -185,20 +185,18 @@ public class ConsultarClientesController implements Initializable{
                 }
 
             } 
-            catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            } 
-            finally {
-                try {
-                    conn.desconexion();
-                    if(cst!=null){
-                       cst.close();
-                    }
-                    if(clientes!=null){
-                        clientes.close();
-                    }
+            
+        
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } 
+        finally {
+            try {
+                conn.desconexion();
+                if(cst!=null){
+                   cst.close();
                 }
-                catch(SQLException e){
+                }catch(SQLException e){
 
                 }
 

@@ -51,9 +51,8 @@ public class InfoClienteController implements Initializable{
         Stage stage = (Stage) identificacionIC.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
         Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/ListarClientes.fxml");
-        
     }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Cliente clientToShow=Pruebas.getInstancia().getClienteAMostrar();
