@@ -63,6 +63,24 @@ end|
 delimiter ;
 
 
+drop procedure if exists consultarEmpleado;
+delimiter |
+
+CREATE PROCEDURE consultarEmpleado(IN nombreI VARCHAR(25), IN apellidoI VARCHAR(25), IN cedulaI VARCHAR(20), IN sueldoDesdeI FLOAT, 
+IN sueldoHastaI FLOAT, IN fecha_inicioDesdeI DATETIME, IN fecha_inicioHastaI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), 
+IN hora_entradaI TIME, IN hora_salidaI TIME)
+BEGIN
+	INSERT INTO Empleado(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
+	hora_salida, telefono, direccion) VALUES
+	(nombreI, apellidoI, cedulaI, usuarioI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
+	hora_salidaI, telefonoI, direccionI);
+END |
+
+delimiter ;
+
+
+
+
 drop procedure if exists getNombreProveedor;
 
 
