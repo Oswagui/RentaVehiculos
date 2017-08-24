@@ -61,11 +61,12 @@ public class InsertarReparacionController implements Initializable{
 	String costoG=costo.getText();
 	String fechaG=fecha.getText();
 	String descripcionG=descripcion.getText();
+	CallableStatement cst=null;
 
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?)}");
+                    prepareCall("{call  insertarReparacion(?,?,?)}");
 
             if(!cedulaG.equals("")){
                     cst.setString(1, cedulaG);

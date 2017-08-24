@@ -31,7 +31,7 @@ public class InsertarDepartamentoController implements Initializable{
     
     @FXML
     public void atras(MouseEvent event) throws IOException{
-        Stage stage = (Stage) precio.getScene().getWindow();
+        Stage stage = (Stage) nombre.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
         //Pruebas.getInstancia().mostrarAnyVentana("");
         
@@ -43,11 +43,12 @@ public class InsertarDepartamentoController implements Initializable{
         
         Conexion conn = new Conexion();
         String nombreG=nombre.getText();
+	CallableStatement cst=null;
 
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?)}");
+                    prepareCall("{call  insertarDepartamento(?)}");
 
             if(!nombreG.equals("")){
                     cst.setString(1, nombreG);

@@ -53,11 +53,12 @@ public class InsertarCuidadoController implements Initializable{
         String cedulaG=cedula.getText();
 	String vehiculoG=vehiculo.getText();
 	String observacionesG=observaciones.getText();
+	CallableStatement cst=null;
 
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?)}");
+                    prepareCall("{call  insertarCuidado(?,?,?)}");
 
             if(!cedulaG.equals("")){
                     cst.setString(1, cedulaG);

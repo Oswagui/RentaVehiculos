@@ -69,7 +69,7 @@ public class InsertarProveedorController implements Initializable{
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?,?,?,?)}");
+                    prepareCall("{call  insertarProveedor(?,?,?,?,?,?)}");
 
             if(!nombreG.equals("")){
                     cst.setString(1, nombreG);
