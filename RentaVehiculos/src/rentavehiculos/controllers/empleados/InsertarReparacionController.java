@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import rentavehiculos.Pruebas;
 import rentavehiculos.classes.connection.Conexion;
-import rentavehiculos.entities.Cliente;
 
 /**
  *
@@ -142,7 +145,7 @@ public class InsertarReparacionController implements Initializable{
         vehiculo.setText("");
 	costo.setText("");
 	fecha.setText("");
-        observaciones.setText("");
+        //observaciones.setText("");
 
 
     }

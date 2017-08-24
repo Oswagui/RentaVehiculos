@@ -10,9 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import rentavehiculos.Pruebas;
 import rentavehiculos.classes.connection.Conexion;
-import rentavehiculos.entities.Cliente;
 
 /**
  *
@@ -66,10 +64,9 @@ public class InsertarProveedorController implements Initializable{
 	String telefonoG=telefono.getText();
 	String e_mailG=e_mail.getText();
 
-        
+        CallableStatement cst=null;
         try{
-            cst = conn.getConnection().
-                    prepareCall("{call  insertarProveedor(?,?,?,?,?,?)}");
+            cst = conn.getConnection().prepareCall("{call  insertarProveedor(?,?,?,?,?,?)}");
 
             if(!nombreG.equals("")){
                     cst.setString(1, nombreG);
