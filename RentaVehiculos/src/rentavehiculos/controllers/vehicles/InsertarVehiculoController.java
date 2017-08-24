@@ -79,7 +79,7 @@ public class InsertarVehiculoController implements Initializable{
         
         try{
             cst = conn.getConnection().
-                    prepareCall("{call  insertarCliente(?,?,?,?,?,?,?,?)}");
+                    prepareCall("{call  insertarVehiculo(?,?,?,?,?,?,?,?)}");
 
             if(!matriculaG.equals("")){
                     cst.setString(1, matriculaG);

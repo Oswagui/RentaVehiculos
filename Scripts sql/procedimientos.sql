@@ -171,11 +171,11 @@ delimiter ;
 drop procedure if exists insertarReparacion;
 delimiter |
 
-CREATE PROCEDURE insertarReparacion(IN idReparacionI INT,IN empleadoI INT, IN vehiculoI VARCHAR(20), IN costoI FLOAT, 
+CREATE PROCEDURE insertarReparacion(IN cedulaI VARCHAR(20), IN vehiculoI VARCHAR(20), IN costoI FLOAT, 
 IN fecha_reparacionI DATETIME, IN descripcionI VARCHAR(512))
 BEGIN
 	INSERT INTO vehiculo VALUES
-	(idReparacionI,empladoI, vehiculoI, costoI, fecha_reparacionI, descripcionI);
+	((SELECT id_empleado FROM empleado WHERE cedula=cedulaI), vehiculoI, costoI, fecha_reparacionI, descripcionI);
 END |
 
 delimiter ;
@@ -185,11 +185,11 @@ delimiter ;
 drop procedure if exists insertarProveedor;
 delimiter |
 
-CREATE PROCEDURE insertarProveedor(IN id_proveedorI INT, IN nombreI VARCHAR(80), IN direccionI VARCHAR(256), IN paisI VARCHAR(60), 
-IN ciudadI VARCHAR(60), IN telefonoI VARCHAR(20), IN rSocialI VARCHAR(256))
+CREATE PROCEDURE insertarProveedor(IN nombreI VARCHAR(80), IN direccionI VARCHAR(256), IN paisI VARCHAR(60), 
+IN ciudadI VARCHAR(60), IN telefonoI VARCHAR(20), IN e_mailI VARCHAR(256))
 BEGIN
-	INSERT INTO cliente VALUES
-	(id_proveedorI, nombreI, direccionI, paisI, ciudadI, telefonoI, rSocialI);
+	INSERT INTO cliente(nombre, direccion, paisI, ciudad, telefono, e_mail) VALUES
+	(nombreI, direccionI, paisI, ciudadI, telefonoI, e_mailI);
 END |
 
 delimiter ;
