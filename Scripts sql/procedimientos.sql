@@ -112,13 +112,14 @@ delimiter ;
 drop procedure if exists insertarEmpleado;
 delimiter |
 
-CREATE PROCEDURE insertarEmpleado(IN id_empleadoI INT,  IN id_departamentoI INT, IN cedulaI VARCHAR(20), IN contrasenaI VARCHAR(20),
-IN sueldoI FLOAT, IN fecha_inicioI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), IN hora_entradaI TIME, 
-IN hora_salidaI TIME, IN telfonoI VARCHAR(20), IN direccionI VARCHAR(256), IN nombreI VARCHAR(25), IN apellido VARCHAR(25))
+CREATE PROCEDURE insertarEmpleado(IN nombreI VARCHAR(25), IN apellidoI VARCHAR(25), IN cedulaI VARCHAR(20), IN usuarioI VARCHAR(20),
+IN contrasenaI VARCHAR(20), IN sueldoI FLOAT, IN fecha_inicioI DATETIME, IN puestoI VARCHAR(256), IN grupoTrabajoI VARCHAR(256), 
+IN hora_entradaI TIME, IN hora_salidaI TIME, IN telefonoI VARCHAR(20), IN direccionI VARCHAR(256))
 BEGIN
-	INSERT INTO vehiculo VALUES
-	(id_empleadoI, id_departamentoI, cedulaI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
-	hora_salidaI, telfonoI, direccionI, nombreI, apellido);
+	INSERT INTO vehiculo(nombre, apellido, cedula, usuario, contrasena, sueldo, fecha_inicio, puesto, grupoTrabajo, hora_entrada, 
+	hora_salida, telefono, direccion) VALUES
+	(nombreI, apellidoI, cedulaI, usuarioI, contrasenaI, sueldoI, fecha_inicioI, puestoI, grupoTrabajoI, hora_entradaI, 
+	hora_salidaI, telefonoI, direccionI);
 END |
 
 delimiter ;

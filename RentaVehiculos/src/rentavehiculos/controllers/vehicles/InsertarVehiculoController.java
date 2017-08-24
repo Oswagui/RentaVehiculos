@@ -154,6 +154,11 @@ public class InsertarVehiculoController implements Initializable{
         
     }
     
+    @FXML
+    public void limpiar(MouseEvent Event) throws IOException{
+        vaciarCampos();
+    }
+    
     public void vaciarCampos(){ 
         
         matricula.setText("");
