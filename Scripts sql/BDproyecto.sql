@@ -69,14 +69,13 @@ CREATE TABLE Cuidado (
   FOREIGN KEY (vehiculo) REFERENCES Vehiculo(matricula));
 
 CREATE TABLE Cliente (
-  id_cliente INT,
   ruc_ci BOOLEAN,
   identificacion VARCHAR(20),
   nombre  VARCHAR(40),
   telefono VARCHAR(10),
   direccion VARCHAR(40),
   razon_social VARCHAR(128),
-  PRIMARY KEY (id_cliente));
+  PRIMARY KEY (identificacion));
   
 CREATE TABLE AlquilerVehiculo (
   idAlquilerVehiculo INT,
@@ -91,6 +90,8 @@ CREATE TABLE AlquilerVehiculo (
   FOREIGN KEY(cliente) REFERENCES Cliente(id_cliente),
   FOREIGN KEY(vehiculo) REFERENCES Vehiculo(matricula));
 
+Alter table AlquilerVehiculo
+ADD FOREIGN KEY(cliente) REFERENCES Cliente(identificacion) ;
 CREATE TABLE TipoPago (
   id_pago INT,
   idAlquilerVehiculo INT,
@@ -103,7 +104,8 @@ ALTER TABLE Empleado
 ADD CONSTRAINT FOREIGN KEY(id_departamento) REFERENCES Departamento(id_departamento);
 
 
-
+ALTER TABLE Cliente
+modify identificacion varchar(20) unique;
 
 
 

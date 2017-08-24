@@ -18,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import rentavehiculos.Pruebas;
+import rentavehiculos.classes.alerts.GeneralAlert;
+import rentavehiculos.classes.alerts.WarningAlert;
 import rentavehiculos.entities.Cliente;
 import rentavehiculos.entities.Vehiculo;
 
@@ -77,7 +79,7 @@ public class ListarVehiculosController implements Initializable{
     void verVehiculo(MouseEvent event) throws IOException {
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
         if (vehicleToShow == null){
-            System.out.println("No ha seleccionado vehiculo");
+            this.mostrarInfoNoExito("No ha seleccionado vehiculo");
             return;
         }
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
@@ -90,7 +92,7 @@ public class ListarVehiculosController implements Initializable{
     void modificarDisponibilidad(MouseEvent event) throws IOException {
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
         if (vehicleToShow == null){
-            System.out.println("No ha seleccionado vehiculo");
+            this.mostrarInfoNoExito("No ha seleccionado vehiculo");
             return;
         }
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
@@ -104,7 +106,7 @@ public class ListarVehiculosController implements Initializable{
     void modificarVehiculo(MouseEvent event) throws IOException {
         Vehiculo vehicleToShow=vehiculos.getSelectionModel().getSelectedItem();
         if (vehicleToShow == null){
-            System.out.println("No ha seleccionado vehiculo");
+            this.mostrarInfoNoExito("No ha seleccionado vehiculo");
             return;
         }
         Pruebas.getInstancia().setVehiculoAMostrar(vehicleToShow);
@@ -129,6 +131,17 @@ public class ListarVehiculosController implements Initializable{
     public void cerrarVentana(){
         Stage stage = (Stage) vehiculos.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
+    }
+    private void mostrarInfoNoExito(String info) {
+        
+        GeneralAlert g;
+        
+        g = new WarningAlert();
+        
+        g.setMensaje(info);
+        
+        g.showAlert();
+        
     }
     
 }

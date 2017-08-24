@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -115,10 +116,20 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="56.0" prefWidth="595.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onMouseClicked="#atras" prefHeight="31.0" prefWidth="64.0" text="Atrás">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font></Button>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="rentarButton" alignment="BASELINE_CENTER" layoutX="212.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#rentar" prefHeight="31.0" prefWidth="79.0" text="Rentar">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_CENTER" layoutX="417.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#atras" prefHeight="31.0" prefWidth="64.0" text="Atrás">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
          </children>
       </VBox>
    </bottom>

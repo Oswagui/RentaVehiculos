@@ -30,7 +30,7 @@
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#cargarLista" prefHeight="30.0" prefWidth="108.0" text="Cargar Lista" textAlignment="CENTER" textOverrun="CLIP" />
                   <Button fx:id="showInfoButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#verCliente" prefHeight="30.0" prefWidth="108.0" text="Ver Cliente" textAlignment="CENTER" textOverrun="CLIP" />
-                  <Button fx:id="modifyButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="146.0" text="Modificar Cliente" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Button fx:id="modifyButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#modificarCliente" prefHeight="25.0" prefWidth="146.0" text="Modificar Cliente" textAlignment="CENTER" textOverrun="CLIP" />
                </children>
             </HBox>
          </children>

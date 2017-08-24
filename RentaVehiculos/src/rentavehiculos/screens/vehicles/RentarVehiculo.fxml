@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.vehicles.InfoVehiculoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentavehiculos.controllers.vehicles.RentarVehiculoController">
    <top>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Vehículo" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="RentarVehículo" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -38,12 +38,7 @@
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="269.0" minHeight="7.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="335.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
@@ -51,63 +46,34 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="matricula" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
-                  <Label text="Proveedor" GridPane.rowIndex="1">
+                  <TextField fx:id="matricula" disable="true" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
+                  <Label text="Cliente(C.I/R.U.C)" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="proveedor" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Tipo" GridPane.rowIndex="2">
+                  <TextField fx:id="cliente" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Numero Dias" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <Label text="Marca" GridPane.rowIndex="3">
+                  <TextField fx:id="dias" onKeyPressed="#calcularTotal" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Imagen" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField fx:id="tipo" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Imagen" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font></Label>
-                  <ImageView fx:id="imagen" fitHeight="160.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <TextField fx:id="marca" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Año" GridPane.rowIndex="4">
+                  <ImageView fx:id="imagen" fitHeight="160.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label text="Precio Total" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="año" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="modelo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="disponibilidad" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label text="Modelo" GridPane.rowIndex="5">
+                  <Label text="Precio Dia" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Estado" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Color" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="color" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label text="Capacidad" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Precio" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="capacidad" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="precio" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="total" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="precio" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

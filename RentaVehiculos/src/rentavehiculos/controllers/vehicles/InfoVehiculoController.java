@@ -5,20 +5,18 @@
  */
 package rentavehiculos.controllers.vehicles;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
 import rentavehiculos.Pruebas;
 import rentavehiculos.entities.Vehiculo;
 
@@ -62,6 +60,9 @@ public class InfoVehiculoController implements Initializable{
     @FXML
     private TextField capacidad;
     
+    @FXML
+    private Button rentarButton;
+    
     public void setApp(Stage app) {
         this.app = app;
     }
@@ -77,6 +78,9 @@ public class InfoVehiculoController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Vehiculo vehicleToShow=Pruebas.getInstancia().getVehiculoAMostrar();
+        if(vehicleToShow.getDisponibilidad() == false){
+            this.rentarButton.setDisable(true);
+        }
         matricula.setText(vehicleToShow.getMatricula());
         proveedor.setText(vehicleToShow.getProveedor().getNombre());
         tipo.setText(vehicleToShow.getTipo());
@@ -91,6 +95,14 @@ public class InfoVehiculoController implements Initializable{
         Image fotoVehiculo=new Image(new ByteArrayInputStream(vehicleToShow.getFoto()));
         imagen.setImage(fotoVehiculo);
     }
+    @FXML
+    public void rentar(MouseEvent event) throws IOException {
+        Stage stage = (Stage) matricula.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/RentarVehiculo.fxml");
+        
+    }
+    
     
     
     

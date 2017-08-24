@@ -7,9 +7,20 @@ package rentavehiculos.controllers.vehicles;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +35,9 @@ import rentavehiculos.Pruebas;
 import rentavehiculos.classes.alerts.GeneralAlert;
 import rentavehiculos.classes.alerts.InfoAlert;
 import rentavehiculos.classes.alerts.WarningAlert;
+import rentavehiculos.classes.connection.Conexion;
 import rentavehiculos.classes.validaciones.Validaciones;
+import static rentavehiculos.controllers.empleados.InsertarEmpleadosController.stringToTimestamp;
 import rentavehiculos.entities.Vehiculo;
 
 /**
@@ -77,7 +90,7 @@ public class ModificarVehiculoController implements Initializable{
     void atras(MouseEvent event) throws IOException {
         Stage stage = (Stage) matricula.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual
-        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/vehicles/ListarVehiculos.fxml");
+        Pruebas.getInstancia().getSubmenu().show();
         
     }
     
@@ -112,6 +125,9 @@ public class ModificarVehiculoController implements Initializable{
         
         if(!this.validarEnteroPositivo(añoG, 0, 2017)){
             this.mostrarInfoNoExito("Año ingresado no valido, debe ser un entero positivo y su valor debe ser menor o igual al año actual.");
+        }else if(matriculaG.equals("") || tipoG.equals("") || marcaG.equals("") || nombre_modeloG.equals("")
+                 || colorG.equals("") || añoG.equals("") || capacidadG.equals("") || precio.equals("")){
+            this.mostrarInfoNoExito("Existen campos vacios");
         }else if(!this.validarEnteroPositivo(capacidadG, -1, -1)){
             this.mostrarInfoNoExito("Capacidad ingresado no valido, debe ser un entero positivo.");
         }
@@ -119,6 +135,63 @@ public class ModificarVehiculoController implements Initializable{
             this.mostrarInfoNoExito("Precio ingresado no valido, debe ser un numero positivo.");
         }else{
             System.out.println("Guardando");
+            CallableStatement cst=null;
+            Conexion conn = new Conexion();
+            try{
+                if(file != null){
+
+                    FileInputStream x = null;
+                    try {
+                        x = new FileInputStream(file);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(ModificarVehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    cst = conn.getConnection().prepareCall("{call modificarVehiculo(?,?,?,?,?,?,?,?,?)}");
+                    cst.setString(1,matriculaG);
+                    cst.setString(2, tipoG);
+                    cst.setString(3, marcaG);
+                    cst.setInt(4,Integer.valueOf(añoG));
+                    cst.setString(5,nombre_modeloG);
+                    cst.setString(6, colorG);
+                    cst.setInt(7, Integer.valueOf(capacidadG));
+                    cst.setFloat(8, Float.valueOf(precio));
+                    cst.setString(9, file.toURI().toString().substring(6));
+                }else{
+                    cst = conn.getConnection().prepareCall("{call modificarVehiculo2(?,?,?,?,?,?,?,?)}");
+                    cst.setString(1,matriculaG);
+                    cst.setString(2, tipoG);
+                    cst.setString(3, marcaG);
+                    cst.setInt(4,Integer.valueOf(añoG));
+                    cst.setString(5,nombre_modeloG);
+                    cst.setString(6, colorG);
+                    cst.setInt(7, Integer.valueOf(capacidadG));
+                    cst.setFloat(8, Float.valueOf(precio));
+                }
+                this.mostrarInfoExito();
+                
+               
+                cst.execute();
+                
+                
+                //stage.close(); //Quitar Comentario para cerrar la ventana actual
+                //Pruebas.getInstancia().mostrarAnyVentana("");  //menu principal
+            } 
+            catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                this.mostrarInfoNoExito("La imagen es demasiado grande para cargarla use otra.");
+            } 
+            finally {
+                try {
+                    conn.desconexion();
+                    if(cst!=null){
+                       cst.close();
+                    }
+                }
+                catch(SQLException e){
+
+                }
+
+            }
             //Programa Funcionalidad de Guardar
         }
     }

@@ -71,6 +71,7 @@ public class SubmenuAtencionController implements Initializable {
         this.alquilarVehiculo.setLayoutY(300);
         this.alquilarVehiculo.setOnMouseEntered(new estimular(this.alquilarVehiculo, true));
         this.alquilarVehiculo.setOnMouseExited(new estimular(this.alquilarVehiculo, false));
+        this.alquilarVehiculo.setVisible(false);
         
         boton = new Image(new File("src/rentavehiculos/util/images/bontonAgregarCLiente.png").toURI().toString());
       
@@ -171,6 +172,31 @@ public class SubmenuAtencionController implements Initializable {
         Pruebas.getInstancia().setFuncionalidad(ventana);
         ventana.show();
     }
+    
+    public void agregarCliente(){
+        Stage ventana = null;
+        try {
+            ventana = AnyCreator.anyCreator("src/rentavehiculos/screens/clientServices/AgregarCliente.fxml");
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+        Stage stageSubmenu = (Stage)((Node)this.fondo).getScene().getWindow();
+        stageSubmenu.hide();
+        ventana.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("No puede cerrar la ventana asi");
+                event.consume();}
+        });
+        
+        Pruebas.getInstancia().getSubmenu().hide();
+        ventana.setResizable(false);
+        ventana.setMaximized(false);
+        Pruebas.getInstancia().setFuncionalidad(ventana);
+        ventana.show();
+    }
+    
+    
     
     private class estimular implements EventHandler<MouseEvent> {
         Button btn;

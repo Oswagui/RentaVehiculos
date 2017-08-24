@@ -7,8 +7,8 @@
    <children>
       <Button fx:id="consultarVehiculo" layoutX="407.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#consultarVehiculo" />
       <Button fx:id="consultarCliente" layoutX="407.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#consultarCliente" />
-      <Button fx:id="agregarCliente" layoutX="407.0" layoutY="140.0" mnemonicParsing="false" />
+      <Button fx:id="agregarCliente" layoutX="407.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#agregarCliente" />
       <Button fx:id="alquilarVehiculo" layoutX="407.0" layoutY="200.0" mnemonicParsing="false" />
-      <Button fx:id="cerrarSesion" layoutX="358.0" layoutY="140.0" mnemonicParsing="false" onAction="#cerrarSesion" />
+      <Button fx:id="cerrarSesion" layoutX="358.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#cerrarSesion" />
    </children>
 </Pane>

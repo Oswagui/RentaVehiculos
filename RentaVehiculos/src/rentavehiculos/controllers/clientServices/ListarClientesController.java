@@ -20,6 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import rentavehiculos.Pruebas;
+import rentavehiculos.classes.alerts.GeneralAlert;
+import rentavehiculos.classes.alerts.WarningAlert;
 import rentavehiculos.entities.Cliente;
 
 /**
@@ -76,7 +78,7 @@ public class ListarClientesController implements Initializable{
     private void verCliente(MouseEvent Event) throws IOException{
         Cliente clientToShow=clientes.getSelectionModel().getSelectedItem();
         if (clientToShow == null){
-            System.out.println("No ha seleccionado cliente");
+            this.mostrarInfoNoExito("No ha seleccionado cliente");
             return;
         }
         Pruebas.getInstancia().setClienteAMostrar(clientToShow);
@@ -86,7 +88,7 @@ public class ListarClientesController implements Initializable{
     
     }
     
-     @FXML
+    @FXML
     void volver(MouseEvent event) throws IOException {
         cerrarVentana();
         Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/ConsultarCliente.fxml");
@@ -100,8 +102,32 @@ public class ListarClientesController implements Initializable{
         Pruebas.getInstancia().getSubmenu().show();
 
     }
+    
+    @FXML
+    void modificarCliente(MouseEvent event) throws IOException {
+        Cliente clienteToShow=clientes.getSelectionModel().getSelectedItem();
+        if (clienteToShow == null){
+            this.mostrarInfoNoExito("No ha seleccionado cliente");
+            return;
+        }
+        Pruebas.getInstancia().setClienteAMostrar(clienteToShow);
+        Stage stage = (Stage) clientes.getScene().getWindow();
+        stage.close(); //Quitar Comentario para cerrar la ventana actual
+        Pruebas.getInstancia().mostrarAnyVentana("src/rentavehiculos/screens/clientServices/ModificarCliente.fxml");
+    }
     public void cerrarVentana(){
         Stage stage = (Stage) clientes.getScene().getWindow();
         stage.close(); //Quitar Comentario para cerrar la ventana actual      
+    }
+    private void mostrarInfoNoExito(String info) {
+        
+        GeneralAlert g;
+        
+        g = new WarningAlert();
+        
+        g.setMensaje(info);
+        
+        g.showAlert();
+        
     }
 }

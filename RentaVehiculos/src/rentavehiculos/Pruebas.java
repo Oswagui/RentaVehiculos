@@ -34,6 +34,7 @@ public class Pruebas extends Application {
     private static Stage login = null;
     private static Stage submenu = null;
     private static Stage funcionalidad = null;
+    private static Stage rentar = null;
     
     public Pruebas(){
         instancia=this;
@@ -147,5 +148,13 @@ public class Pruebas extends Application {
     public void setFuncionalidad(Stage funcionalidad) {
         Pruebas.funcionalidad = funcionalidad;
     }
+
+    public void setRentar(Stage rentar) {
+        Pruebas.rentar = rentar;
+    }
+    public Stage getRentar() {
+        return rentar;
+    }
+
    
 }

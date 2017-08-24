@@ -357,6 +357,41 @@ END |
 
 delimiter ;
 
+drop procedure if exists encontrarIdentificacion;
+delimiter |
+
+CREATE PROCEDURE encontrarIdentificacion (IN identificacionI VARCHAR(20), OUT cantidad int)
+BEGIN
+	select count(identificacion) into cantidad
+    from cliente
+    where identificacion = identificacionI;
+END |
+
+
+delimiter ;
+
+DELIMITER //
+CREATE TRIGGER tr1 AFTER INSERT ON alquilervehiculo
+FOR EACH ROW
+BEGIN
+UPDATE alquilervehiculo
+SET cliente=(SELECT id_cliente FROM cliente WHERE identificacion=new.cliente)
+WHERE idAlquilerVehiculo=(SELECT max(idAlquilerVehiculo) FROM alquilervehiculo);
+ 
+END//
+
+delimiter ;
+
+drop procedure if exists encontrarMaximoCodigoRenta;
+delimiter |
+
+CREATE PROCEDURE encontrarMaximoCodigoRenta (OUT maximo int)
+BEGIN
+	select max(idAlquilerVehiculo) into maximo
+    from alquilervehiculo;
+END |
+ 
+DELIMITER ;
 
 
 

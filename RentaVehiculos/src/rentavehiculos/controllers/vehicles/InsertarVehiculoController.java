@@ -159,6 +159,7 @@ public class InsertarVehiculoController implements Initializable{
         vaciarCampos();
     }
     
+    
     public void vaciarCampos(){ 
         
         matricula.setText("");

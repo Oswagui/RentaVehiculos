@@ -405,4 +405,5 @@ public class ConsultarVehiculoController implements Initializable{
         g.showAlert();
         
     }
+   
 }
